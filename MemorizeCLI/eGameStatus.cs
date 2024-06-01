@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace MemorizeCLI
 {
-    internal class Program
+    internal enum eGameStatus
     {
-
-        public static void Main(string[] i_Args)
-        {
-
-        }
-
+        MainMenu,
+        CurrentlyRunning,
+        Over
     }
 }

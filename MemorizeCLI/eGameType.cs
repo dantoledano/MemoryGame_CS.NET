@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace MemorizeCLI
 {
-    internal class Program
+    internal enum eGameType
     {
-
-        public static void Main(string[] i_Args)
-        {
-
-        }
-
+        HumanVHuman,
+        HumanVComputer
     }
 }
