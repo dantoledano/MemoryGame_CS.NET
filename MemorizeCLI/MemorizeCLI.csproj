@@ -36,9 +36,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardTile.cs" />
     <Compile Include="eGameStatus.cs" />
     <Compile Include="eGameType.cs" />
     <Compile Include="ePlayerType.cs" />
+    <Compile Include="GameBoard.cs" />
     <Compile Include="GameDataManager.cs" />
     <Compile Include="GameInterface.cs" />
     <Compile Include="Player.cs" />
