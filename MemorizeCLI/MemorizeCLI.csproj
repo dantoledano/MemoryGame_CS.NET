@@ -39,6 +39,9 @@
     <Compile Include="eGameStatus.cs" />
     <Compile Include="eGameType.cs" />
     <Compile Include="ePlayerType.cs" />
+    <Compile Include="GameDataManager.cs" />
+    <Compile Include="GameInterface.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
