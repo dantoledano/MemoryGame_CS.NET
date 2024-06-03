@@ -17,7 +17,7 @@ namespace MemorizeCLI
         {
             m_NumOfColumns = i_NumOfColumns;
             m_NumOfRows = i_NumOfRows;
-            InitializeBoard( m_NumOfColumns, m_NumOfRows,ref m_Board);
+            InitializeBoard(m_NumOfRows,m_NumOfColumns ,ref m_Board);
         }
         
         private (int, int) getValidBoardSize()
@@ -74,8 +74,6 @@ namespace MemorizeCLI
                     shuffeledArrayIndexCounter++;
                 }
             }
-            //test
-            m_Board[1, 1].IsRevealed = true;
         }
 
 
@@ -83,7 +81,9 @@ namespace MemorizeCLI
         {
             Console.Write("  ");
             for (int j = 0; j < m_NumOfColumns; j++)
+            {
                 Console.Write($"  {(char)('A' + j)} ");
+            }
             Console.WriteLine();
             PrintSeparator(m_NumOfColumns);
 

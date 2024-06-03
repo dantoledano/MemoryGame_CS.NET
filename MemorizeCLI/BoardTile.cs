@@ -40,7 +40,7 @@ namespace MemorizeCLI
         public BoardTile(char i_Value, int i_Row, int i_Column)
         {
             m_Value = i_Value;
-            m_IsRevealed = false;
+            m_IsRevealed = true;
             m_ColumnIndexInBoard = i_Column;
             m_RowIndexInBoard = i_Row;
         }
