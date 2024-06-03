@@ -13,6 +13,7 @@ namespace MemorizeCLI
         private const int k_MinMatrixRows = 4;
         private const int k_MinMatrixColumns = 4;
         private static eGameStatus s_currentGameStatus = eGameStatus.MainMenu;
+        private GameDataManager m_GameDataManager;
 
 
 

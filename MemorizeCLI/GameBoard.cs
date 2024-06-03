@@ -11,13 +11,13 @@ namespace MemorizeCLI
     {
         readonly int m_NumOfColumns;
         readonly int m_NumOfRows; 
-        BoardTile[,] m_Board;
+        readonly BoardTile[,] m_Board;
 
-        public GameBoard(int i_NumOfColumns,int i_NumOfRows)
+        public GameBoard(int i_NumOfRows, int i_NumOfColumns)
         {
             m_NumOfColumns = i_NumOfColumns;
             m_NumOfRows = i_NumOfRows;
-            initializeBoard( m_NumOfColumns, m_NumOfRows,ref m_Board);
+            InitializeBoard( m_NumOfColumns, m_NumOfRows,ref m_Board);
         }
         
         private (int, int) getValidBoardSize()
@@ -41,11 +41,11 @@ namespace MemorizeCLI
             return (numberOfLinesInBoard, numberOfRowsInBoard);
         }
 
-        public void initializeBoard(int m_NumOfColumns, int m_NumOfRows,ref BoardTile[,] m_Board)
+        public void InitializeBoard(int i_NumOfRows, int i_NumOfColumns, ref BoardTile[,] m_Board)
         {
-            m_Board = new BoardTile[m_NumOfColumns, m_NumOfRows];
+            m_Board = new BoardTile[i_NumOfRows, i_NumOfColumns];
             int shuffeledArrayIndexCounter = 0;
-            char[] letters = new char[m_NumOfColumns * m_NumOfRows / 2];
+            char[] letters = new char[i_NumOfColumns * i_NumOfRows / 2];
             for (int i = 0; i < letters.Length; i++)
             {
                 letters[i] = (char)('A' + i);
@@ -66,14 +66,16 @@ namespace MemorizeCLI
                 shuffeledBoard[j] = temp;
             }
 
-            for(int i = 0; i < m_NumOfColumns; ++i)
+            for(int i = 0; i < i_NumOfRows; ++i)
             {
-                for(int j = 0; j < m_NumOfRows; ++j)
+                for(int j = 0; j < i_NumOfColumns; ++j)
                 {
                     m_Board[i, j] = new BoardTile(shuffeledBoard[shuffeledArrayIndexCounter], i, j);
                     shuffeledArrayIndexCounter++;
                 }
             }
+            //test
+            m_Board[1, 1].IsRevealed = true;
         }
 
 
@@ -98,35 +100,35 @@ namespace MemorizeCLI
             }
         }
 
-        public void PrintSeparator(int m_NumOfRows)
+        public void PrintSeparator(int i_NumOfColumns)
         {
-            Console.WriteLine($"  {new string('=', m_NumOfRows * 4 + 1)}");
+            Console.WriteLine($"  {new string('=', i_NumOfColumns * 4 + 1)}");
         }
 
-        public bool RevealTile(int i_Line, int i_Row)
+        public bool RevealTile(int i_Row, int i_Column)
         {
             bool isSuccededToReveal = true;
 
-            if (i_Line < 0 || i_Line >= m_NumOfColumns || i_Row < 0 || i_Row >= m_NumOfRows || m_Board[i_Line, i_Row].IsRevealed)
+            if (i_Row < 0 || i_Row >= m_NumOfColumns || i_Column < 0 || i_Column >= m_NumOfRows || m_Board[i_Row, i_Column].IsRevealed)
             {
                 isSuccededToReveal = false;
             }
 
-            m_Board[i_Line, i_Row].IsRevealed = true;
+            m_Board[i_Row, i_Column].IsRevealed = true;
             return isSuccededToReveal;
         }
 
-        public void HideTile(int i_Line, int i_Row)
+        public void HideTile(int i_Column, int i_Row)
         {
-            if (i_Line >= 0 && i_Line < m_NumOfColumns && i_Row >= 0 && i_Row < m_NumOfRows)
+            if (i_Row >= 0 && i_Row < m_NumOfColumns && i_Column >= 0 && i_Column < m_NumOfRows)
             {
-                m_Board[i_Line, i_Row].IsRevealed = false;
+                m_Board[i_Row, i_Column].IsRevealed = false;
             }
         }
 
-        public BoardTile GetTile(int i_Line, int i_Row)
+        public BoardTile GetTile(int i_Row, int i_Column)
         {
-            return m_Board[i_Line, i_Row];
+            return m_Board[i_Row, i_Column];
         }
 
         //public bool AllTilesRevealed()

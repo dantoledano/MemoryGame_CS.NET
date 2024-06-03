@@ -13,12 +13,13 @@ namespace MemorizeCLI
         private eGameType e_GameType;
         private GameDataManager m_GameDataManager;
         private readonly GameMenu r_GameMenu;
+        private readonly GameLogicManager r_GameLogicManager;
 
 
         public GameInterface()
         {
             m_GameDataManager = new GameDataManager(k_NumOfColumns, k_NumOfRows);
-            
+            r_GameLogicManager = new GameLogicManager();
             r_GameMenu = new GameMenu();
         }
 
@@ -40,7 +41,7 @@ namespace MemorizeCLI
             int columns, rows;
 
             eGameType gameType =
-                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out columns, out rows);
+                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns );
             Player firstPlayer = new Player(firstPlayerName, ePlayerType.Human);
             Player? secondPlayer;
             if (gameType == eGameType.HumanVHuman)
@@ -52,7 +53,7 @@ namespace MemorizeCLI
                 secondPlayer = new Player(secondPlayerName, ePlayerType.Computer);
             }
 
-            m_GameDataManager = new GameDataManager(columns, rows, gameType, firstPlayer,
+            m_GameDataManager = new GameDataManager(rows, columns, gameType, firstPlayer,
                 secondPlayer);
             
 
@@ -71,7 +72,7 @@ namespace MemorizeCLI
                 m_GameDataManager.SecondPlayer.PlayerPoints);
 
             Console.WriteLine(scoreBoard);
-            //m_GameDataManager.GameBoard.initializeBoard();
+            //m_GameDataManager.GameBoard.InitializeBoard();
             m_GameDataManager.GameBoard.DisplayBoard();
         }
 

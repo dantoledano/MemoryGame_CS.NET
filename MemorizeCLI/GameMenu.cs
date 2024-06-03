@@ -9,7 +9,7 @@ namespace MemorizeCLI
     internal class GameMenu
     {
 
-        public eGameType RunMenuScreen(out string o_FirstPlayerName, out string o_secondPlayerName, out int o_numOfColumns,out int o_numOfRows)
+        public eGameType RunMenuScreen(out string o_FirstPlayerName, out string o_secondPlayerName,out int o_numOfRows, out int o_numOfColumns)
         {
             o_numOfColumns = 4;
             o_numOfRows = 4;
@@ -19,7 +19,7 @@ namespace MemorizeCLI
             Console.WriteLine($"Hello {o_FirstPlayerName}");
             Console.WriteLine("Choose Your Prefered Game Type:");
             eGameType gameType = GetAndValidateGameType(out o_secondPlayerName);
-            GetAndValidateMatrixDimenssions(out o_numOfColumns, out o_numOfRows);
+            GetAndValidateMatrixDimenssions(out o_numOfRows, out o_numOfColumns);
             return gameType;
         }
 
@@ -53,7 +53,7 @@ namespace MemorizeCLI
 
         }
 
-        private bool GetAndValidateMatrixDimenssions(out int o_numOfColumns, out int o_numOfRows)
+        private bool GetAndValidateMatrixDimenssions(out int o_numOfRows, out int o_numOfColumns )
         {
             bool isValidMatrixDimenssions = false;
             o_numOfColumns = 4;
@@ -61,11 +61,12 @@ namespace MemorizeCLI
 
             while (!isValidMatrixDimenssions)
             {
+                Console.WriteLine("Please Enter Number Of Rows:");
+                o_numOfRows = GetSizeWithinRange(GameLogicManager.MinMatrixRows, GameLogicManager.MaxMatrixRows);
                 Console.WriteLine("Please Enter Number Of Columns:");
                 o_numOfColumns =
                     GetSizeWithinRange(GameLogicManager.MinMatrixColumns, GameLogicManager.MaxMatrixColumns);
-                Console.WriteLine("Please Enter Number Of Rows:");
-                o_numOfRows = GetSizeWithinRange(GameLogicManager.MinMatrixRows, GameLogicManager.MaxMatrixRows);
+
 
                 if ((o_numOfColumns * o_numOfRows) % 2 == 0)
                 {

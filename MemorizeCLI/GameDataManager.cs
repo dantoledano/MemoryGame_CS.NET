@@ -26,7 +26,7 @@ namespace MemorizeCLI
             m_SecondPlayer = new Player(0);
         }
 
-        public GameDataManager(int i_NumOfColumns, int i_NumOfRows, eGameType i_GameType,
+        public GameDataManager(int i_NumOfRows, int i_NumOfColumns, eGameType i_GameType,
             Player i_FirstPlayer, Player i_SecondPlayer)
         {
             m_NumOfColumns = i_NumOfColumns;
@@ -36,7 +36,7 @@ namespace MemorizeCLI
             m_FirstPlayer = i_FirstPlayer;
             m_SecondPlayer = i_SecondPlayer;
             m_CurrentPlayer = i_FirstPlayer;
-            m_Board = new GameBoard(i_NumOfColumns, i_NumOfRows);
+            m_Board = new GameBoard(i_NumOfRows,i_NumOfColumns );
         }
 
         public int NumOfColumns
