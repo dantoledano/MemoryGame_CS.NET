@@ -16,6 +16,7 @@ build/
 *.sln.docstates
 *.vcxproj.user
 *.code-workspace
+*.vsidx
 
 # Ignore Visual Studio Code files
 .vscode/
