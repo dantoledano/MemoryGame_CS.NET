@@ -9,15 +9,14 @@ namespace MemorizeCLI
 {
     internal class GameBoard
     {
-        readonly int m_NumOfLines;
+        readonly int m_NumOfColumns;
         readonly int m_NumOfRows;
         static BoardTile[,] m_Board;
 
-        public GameBoard()
+        public GameBoard(int i_NumOfColumns,int i_NumOfRows)
         {
-            (m_NumOfLines, m_NumOfRows) = getValidBoardSize();
-            m_Board = new BoardTile[m_NumOfLines, m_NumOfRows];
-            initializeBoard();
+            m_NumOfColumns = i_NumOfColumns;
+            m_NumOfRows = i_NumOfRows;
         }
         
         private (int, int) getValidBoardSize()
@@ -41,62 +40,72 @@ namespace MemorizeCLI
             return (numberOfLinesInBoard, numberOfRowsInBoard);
         }
 
-        private void initializeBoard()
+        public void initializeBoard()
         {
-            string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            Random rand = new Random();
-
-            // Place pairs of letters on the board
-            for (int letterIndex = 0; letterIndex < letters.Length; letterIndex++)
+            int shuffeledArrayIndexCounter = 0;
+            char[] letters = new char[m_NumOfColumns * m_NumOfRows / 2];
+            for (int i = 0; i < letters.Length; i++)
             {
-                char currentLetter = letters[letterIndex];
-                for (int pair = 0; pair < 2; pair++)
-                {
-                    // Find a random empty cell for the current letter
-                    int row, col;
-                    do
-                    {
-                        row = rand.Next(m_NumOfLines);
-                        col = rand.Next(m_NumOfRows);
-                    } while (m_Board[row, col] != null);
+                letters[i] = (char)('A' + i);
+            }
 
-                    // Place the letter at the selected cell
-                    m_Board[row, col] = new BoardTile(currentLetter, row, col);
+            // Concatenate the array with itself
+            char[] shuffeledBoard = new char[letters.Length * 2];
+            Array.Copy(letters, 0, shuffeledBoard, 0, letters.Length);
+            Array.Copy(letters, 0, shuffeledBoard, letters.Length, letters.Length);
+
+            // Shuffle the board
+            Random rand = new Random();
+            for (int i = shuffeledBoard.Length - 1; i > 0; i--)
+            {
+                int j = rand.Next(i + 1);
+                char temp = shuffeledBoard[i];
+                shuffeledBoard[i] = shuffeledBoard[j];
+                shuffeledBoard[j] = temp;
+            }
+
+            for (int i = 0; i < m_NumOfColumns; ++i)
+            {
+                for (int j = 0; j < m_NumOfRows; ++j)
+                {
+                    m_Board[i, j] = new BoardTile(shuffeledBoard[shuffeledArrayIndexCounter], i, j);
+                    shuffeledArrayIndexCounter++;
                 }
             }
         }
+
 
         public void DisplayBoard()
         {
             Console.Write("  ");
-            for (int j = 0; j < m_NumOfRows; j++)
-                Console.Write($"  {(char)('A' + j)}");
+            for (int j = 0; j < m_NumOfColumns; j++)
+                Console.Write($"  {(char)('A' + j)} ");
             Console.WriteLine();
-            PrintSeparator(m_NumOfRows);
+            PrintSeparator(m_NumOfColumns);
 
-            for (int i = 0; i < m_NumOfLines; i++)
+            for (int i = 0; i < m_NumOfRows; i++)
             {
-                Console.Write($"  {i + 1} |");
-                for (int j = 0; j < m_NumOfRows; j++)
+                Console.Write($"{i + 1} |");
+                for (int j = 0; j < m_NumOfColumns; j++)
                 {
-                    // Printing empty spaces in the board cells that unrecovered
+                    // Printing empty spaces in the board cells
                     Console.Write(m_Board[i, j].IsRevealed ? $" {m_Board[i, j].Value} |" : "   |");
                 }
                 Console.WriteLine();
-                PrintSeparator(m_NumOfRows);
+                PrintSeparator(m_NumOfColumns);
             }
         }
 
-        static public void PrintSeparator(int i_NumOfRows)
+        public void PrintSeparator(int m_NumOfRows)
         {
-            Console.WriteLine("  " + new string('=', i_NumOfRows * 4 + 1));
+            Console.WriteLine($"  {new string('=', m_NumOfRows * 4 + 1)}");
         }
 
         public bool RevealTile(int i_Line, int i_Row)
         {
             bool isSuccededToReveal = true;
 
-            if (i_Line < 0 || i_Line >= m_NumOfLines || i_Row < 0 || i_Row >= m_NumOfRows || m_Board[i_Line, i_Row].IsRevealed)
+            if (i_Line < 0 || i_Line >= m_NumOfColumns || i_Row < 0 || i_Row >= m_NumOfRows || m_Board[i_Line, i_Row].IsRevealed)
             {
                 isSuccededToReveal = false;
             }
@@ -107,7 +116,7 @@ namespace MemorizeCLI
 
         public void HideTile(int i_Line, int i_Row)
         {
-            if (i_Line >= 0 && i_Line < m_NumOfLines && i_Row >= 0 && i_Row < m_NumOfRows)
+            if (i_Line >= 0 && i_Line < m_NumOfColumns && i_Row >= 0 && i_Row < m_NumOfRows)
             {
                 m_Board[i_Line, i_Row].IsRevealed = false;
             }

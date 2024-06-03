@@ -18,6 +18,7 @@ namespace MemorizeCLI
         public GameInterface()
         {
             m_GameDataManager = new GameDataManager(k_NumOfColumns, k_NumOfRows);
+            
             r_GameMenu = new GameMenu();
         }
 
@@ -27,6 +28,9 @@ namespace MemorizeCLI
             {
                 runMenu();
             }
+            ClearScreen();
+            DisplayGameInterface();
+            //startGame
         }
 
         private void runMenu()
@@ -37,16 +41,37 @@ namespace MemorizeCLI
             eGameType gameType =
                 r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out columns, out rows);
             Player firstPlayer = new Player(firstPlayerName, ePlayerType.Human);
+            Player? secondPlayer;
             if (gameType == eGameType.HumanVHuman)
             {
-                Player secondPlayer = new Player(secondPlayerName, ePlayerType.Human);
+                secondPlayer = new Player(secondPlayerName, ePlayerType.Human);
             }
             else
             {
-                Player secondPlayer = new Player(secondPlayerName, ePlayerType.Computer);
+                secondPlayer = new Player(secondPlayerName, ePlayerType.Computer);
             }
 
-            // Send all the data gathered here to the logic manager to start a game.
+            m_GameDataManager = new GameDataManager(columns, rows, gameType, firstPlayer,
+                secondPlayer);
+            
+
+
+        }
+
+
+        private void DisplayGameInterface()
+        {
+            Console.WriteLine($"{m_GameDataManager.CurrentPlayer.PlayerName}'s Turn\n");
+
+            string scoreBoard = string.Format("Score Board: {0}:{1} | {2}:{3}",
+                m_GameDataManager.FirstPlayer.PlayerName,
+                m_GameDataManager.FirstPlayer.PlayerPoints,
+                m_GameDataManager.SecondPlayer.PlayerName,
+                m_GameDataManager.SecondPlayer.PlayerPoints);
+
+            Console.WriteLine(scoreBoard);
+            m_GameDataManager.GameBoard.initializeBoard();
+            m_GameDataManager.GameBoard.DisplayBoard();
         }
 
         public void DisplayGameSettings()

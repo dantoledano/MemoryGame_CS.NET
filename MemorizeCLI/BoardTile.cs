@@ -10,7 +10,7 @@ namespace MemorizeCLI
     {
         char m_Value { get; set; } 
         bool m_IsRevealed { get; set; }
-        int m_LineIndexInBoard { get; set; }
+        int m_ColumnIndexInBoard { get; set; }
         int m_RowIndexInBoard { get; set; }
 
         public char Value
@@ -25,10 +25,10 @@ namespace MemorizeCLI
             set{ m_IsRevealed = value; }
         }
 
-        public int  LineIndexInBoard
+        public int  ColumnIndexInBoard
         {
-            get { return m_LineIndexInBoard; }
-            set { m_LineIndexInBoard = value; }
+            get { return m_ColumnIndexInBoard; }
+            set { m_ColumnIndexInBoard = value; }
         }
 
         public int RowIndexInBoard
@@ -38,11 +38,11 @@ namespace MemorizeCLI
         }
 
 
-        public BoardTile(char i_Value, int i_Line, int i_Row)
+        public BoardTile(char i_Value, int i_Column, int i_Row)
         {
             m_Value = i_Value;
-            m_IsRevealed = false;
-            m_LineIndexInBoard = i_Line;
+            m_IsRevealed = true;
+            m_ColumnIndexInBoard = i_Column;
             m_RowIndexInBoard = i_Row;
         }
     }
