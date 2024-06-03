@@ -28,6 +28,12 @@ namespace MemorizeCLI
         public int  LineIndexInBoard
         {
             get { return m_LineIndexInBoard; }
+            set { m_LineIndexInBoard = value; }
+        }
+
+        public int RowIndexInBoard
+        {
+            get { return m_RowIndexInBoard; }
             set { m_RowIndexInBoard = value; }
         }
 
