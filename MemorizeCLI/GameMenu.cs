@@ -23,20 +23,20 @@ namespace MemorizeCLI
             return gameType;
         }
 
-        public int GetSizeWithinRange(int i_minSize, int i_maxSize)
+        public int GetSizeWithinRange(int i_MinSize, int i_MaxSize)
         {
-            int userSizeChoice = i_minSize;
+            int userSizeChoice = i_MinSize;
             bool isInputANumber = false;
             bool isInputWithinRange = false;
 
             while (!isInputWithinRange || !isInputANumber)
             {
-                Console.WriteLine($"Enter A Value Between {i_minSize} - {i_maxSize}: ");
+                Console.WriteLine($"Enter A Value Between {i_MinSize} - {i_MaxSize}: ");
                 isInputANumber = int.TryParse(Console.ReadLine(), out userSizeChoice);
 
                 if (isInputANumber)
                 {
-                    if (userSizeChoice >= i_minSize && userSizeChoice <= i_maxSize)
+                    if (userSizeChoice >= i_MinSize && userSizeChoice <= i_MaxSize)
                     {
                         isInputWithinRange = true;
                     }

@@ -8,17 +8,36 @@ namespace MemorizeCLI
 {
     internal class BoardTile
     {
-        public char m_Value { get; set; }
-        public bool m_IsRevealed { get; set; }
-        public int m_LineIndexInBoard { get; set; }
-        public int m_RowIndexInBoard { get; set; }
+        char m_Value { get; set; } 
+        bool m_IsRevealed { get; set; }
+        int m_LineIndexInBoard { get; set; }
+        int m_RowIndexInBoard { get; set; }
 
-        public BoardTile(char value, int line, int row)
+        public char Value
         {
-            m_Value = value;
+            get { return m_Value; }
+            set{ m_Value = value; }
+        }
+
+        public bool IsRevealed
+        {
+            get{ return m_IsRevealed; }
+            set{ m_IsRevealed = value; }
+        }
+
+        public int  LineIndexInBoard
+        {
+            get { return m_LineIndexInBoard; }
+            set { m_RowIndexInBoard = value; }
+        }
+
+
+        public BoardTile(char i_Value, int i_Line, int i_Row)
+        {
+            m_Value = i_Value;
             m_IsRevealed = false;
-            m_LineIndexInBoard = line;
-            m_RowIndexInBoard = row;
+            m_LineIndexInBoard = i_Line;
+            m_RowIndexInBoard = i_Row;
         }
     }
 }

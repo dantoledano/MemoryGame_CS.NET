@@ -15,12 +15,12 @@ namespace MemorizeCLI
 
         public GameBoard()
         {
-            (m_NumOfLines, m_NumOfRows) = GetValidBoardSize();
+            (m_NumOfLines, m_NumOfRows) = getValidBoardSize();
             m_Board = new BoardTile[m_NumOfLines, m_NumOfRows];
-            InitializeBoard();
+            initializeBoard();
         }
         
-        private (int, int) GetValidBoardSize()
+        private (int, int) getValidBoardSize()
         {
             int numberOfLinesInBoard, numberOfRowsInBoard;
             do
@@ -41,7 +41,7 @@ namespace MemorizeCLI
             return (numberOfLinesInBoard, numberOfRowsInBoard);
         }
 
-        private void InitializeBoard()
+        private void initializeBoard()
         {
             string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             Random rand = new Random();
@@ -80,52 +80,52 @@ namespace MemorizeCLI
                 for (int j = 0; j < m_NumOfRows; j++)
                 {
                     // Printing empty spaces in the board cells that unrecovered
-                    Console.Write(m_Board[i, j].m_IsRevealed ? $" {m_Board[i, j].m_Value} |" : "   |");
+                    Console.Write(m_Board[i, j].IsRevealed ? $" {m_Board[i, j].Value} |" : "   |");
                 }
                 Console.WriteLine();
                 PrintSeparator(m_NumOfRows);
             }
         }
 
-        static public void PrintSeparator(int numOfRows)
+        static public void PrintSeparator(int i_NumOfRows)
         {
-            Console.WriteLine("  " + new string('=', numOfRows * 4 + 1));
+            Console.WriteLine("  " + new string('=', i_NumOfRows * 4 + 1));
         }
 
-        public bool RevealTile(int line, int row)
+        public bool RevealTile(int i_Line, int i_Row)
         {
             bool isSuccededToReveal = true;
 
-            if (line < 0 || line >= m_NumOfLines || row < 0 || row >= m_NumOfRows || m_Board[line, row].m_IsRevealed)
+            if (i_Line < 0 || i_Line >= m_NumOfLines || i_Row < 0 || i_Row >= m_NumOfRows || m_Board[i_Line, i_Row].IsRevealed)
             {
                 isSuccededToReveal = false;
             }
 
-            m_Board[line, row].m_IsRevealed = true;
+            m_Board[i_Line, i_Row].IsRevealed = true;
             return isSuccededToReveal;
         }
 
-        public void HideTile(int line, int row)
+        public void HideTile(int i_Line, int i_Row)
         {
-            if (line >= 0 && line < m_NumOfLines && row >= 0 && row < m_NumOfRows)
+            if (i_Line >= 0 && i_Line < m_NumOfLines && i_Row >= 0 && i_Row < m_NumOfRows)
             {
-                m_Board[line, row].m_IsRevealed = false;
+                m_Board[i_Line, i_Row].IsRevealed = false;
             }
         }
 
-        public BoardTile GetTile(int line, int row)
+        public BoardTile GetTile(int i_Line, int i_Row)
         {
-            return m_Board[line, row];
+            return m_Board[i_Line, i_Row];
         }
 
-        public bool AllTilesRevealed()
-        {
-            foreach (var tile in m_Board)
-            {
-                if (!tile.m_IsRevealed)
-                    return false;
-            }
-            return true;
-        }
+        //public bool AllTilesRevealed()
+        //{
+        //    foreach (var tile in m_Board)
+        //    {
+        //        if (!tile.m_IsRevealed)
+        //            return false;
+        //    }
+        //    return true;
+        //}
     }
 }
