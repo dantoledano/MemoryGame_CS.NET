@@ -17,6 +17,8 @@ build/
 *.vcxproj.user
 *.code-workspace
 *.vsidx
+*.vspx
+*
 
 # Ignore Visual Studio Code files
 .vscode/
