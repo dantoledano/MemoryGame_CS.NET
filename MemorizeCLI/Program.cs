@@ -13,8 +13,9 @@ namespace MemorizeCLI
         public static void Main(string[] i_Args)
         {
             GameInterface g1 = new GameInterface();
-            g1.GetUserInput();
-            g1.DisplayGameSettings();
+            g1.startGame();
+        
+
         }
 
     }

@@ -12,70 +12,41 @@ namespace MemorizeCLI
         private int k_NumOfRows;
         private eGameType e_GameType;
         private GameDataManager m_GameDataManager;
+        private readonly GameMenu r_GameMenu;
 
 
         public GameInterface()
         {
             m_GameDataManager = new GameDataManager(k_NumOfColumns, k_NumOfRows);
+            r_GameMenu = new GameMenu();
         }
-        public bool GetUserInput()
+
+        public void startGame()
         {
-            Console.WriteLine("Please Enter Your First Player Name: ");
-            //string userName = Console.ReadLine();
-            m_GameDataManager.FirstPlayer.PlayerName = Console.ReadLine();
-                
-            Console.WriteLine($"Hello {m_GameDataManager.FirstPlayer.PlayerName}!\n");
-
-            // Get game type
-            int gameType=0;
-            Console.WriteLine("Please Enter The Game Type: ");
-            Console.WriteLine("1) Human Vs Human");
-            Console.WriteLine("2) Human Vs Computer");
-            
-            bool isValidInput = false;
-
-            while (!isValidInput)
+            if (GameLogicManager.GameStatus == eGameStatus.MainMenu)
             {
-                if (int.TryParse(Console.ReadLine(), out gameType) && (gameType == 1 || gameType == 2))
-                {
-                    isValidInput = true;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid Input, Choose 1 OR 2\n");
-                    Console.WriteLine("Please Enter The Game Type: ");
-                    Console.WriteLine("1) Human Vs Human");
-                    Console.WriteLine("2) Human Vs Computer");
-                }
+                runMenu();
             }
+        }
 
-            e_GameType = gameType == 1 ? eGameType.HumanVHuman : eGameType.HumanVComputer;
-            if (e_GameType == eGameType.HumanVHuman)
+        private void runMenu()
+        {
+            string firstPlayerName, secondPlayerName;
+            int columns, rows;
+
+            eGameType gameType =
+                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out columns, out rows);
+            Player firstPlayer = new Player(firstPlayerName, ePlayerType.Human);
+            if (gameType == eGameType.HumanVHuman)
             {
-                Console.WriteLine("Please Enter Your Second Player Name: ");
-                m_GameDataManager.SecondPlayer.PlayerName = Console.ReadLine();
-                m_GameDataManager.SecondPlayer.PlayerType = ePlayerType.Human;
+                Player secondPlayer = new Player(secondPlayerName, ePlayerType.Human);
             }
             else
             {
-                m_GameDataManager.SecondPlayer.PlayerType = ePlayerType.Computer;
+                Player secondPlayer = new Player(secondPlayerName, ePlayerType.Computer);
             }
 
-            // Get number of columns
-            Console.WriteLine("Please Enter The Number Of Columns: ");
-            while (!int.TryParse(Console.ReadLine(), out k_NumOfColumns) || k_NumOfColumns <= 0)
-            {
-                Console.WriteLine("Invalid Input, Please Enter A Positive Integer\n");
-            }
-
-            // Get number of rows
-            Console.WriteLine("Please Enter The Number Of Rows: ");
-            while (!int.TryParse(Console.ReadLine(), out k_NumOfRows) || k_NumOfRows <= 0)
-            {
-                Console.WriteLine("Invalid Input, Please Enter A Positive Integer\n");
-            }
-
-            return isValidInput;
+            // Send all the data gathered here to the logic manager to start a game.
         }
 
         public void DisplayGameSettings()

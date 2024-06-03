@@ -15,6 +15,7 @@ namespace MemorizeCLI
         private eGameType m_GameType;
         private Player m_FirstPlayer;
         private Player m_SecondPlayer;
+        private GameBoard m_Board;
 
         public GameDataManager(int i_NumOfColumns, int i_NumOfRows)
         {

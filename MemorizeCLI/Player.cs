@@ -18,6 +18,13 @@ namespace MemorizeCLI
             m_PlayerPoints = i_PlayerPoints;
         }
 
+        public Player(string i_playerName, ePlayerType i_playerType)
+        {
+            m_PlayerName = i_playerName;
+            m_PlayerType = i_playerType;
+            m_PlayerPoints = 0;
+        }
+
         public ePlayerType PlayerType
         {
             get

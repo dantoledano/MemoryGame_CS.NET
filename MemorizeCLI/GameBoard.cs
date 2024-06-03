@@ -19,7 +19,7 @@ namespace MemorizeCLI
             m_Board = new BoardTile[m_NumOfLines, m_NumOfRows];
             InitializeBoard();
         }
-
+        
         private (int, int) GetValidBoardSize()
         {
             int numberOfLinesInBoard, numberOfRowsInBoard;
