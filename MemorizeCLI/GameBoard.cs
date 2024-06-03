@@ -10,13 +10,14 @@ namespace MemorizeCLI
     internal class GameBoard
     {
         readonly int m_NumOfColumns;
-        readonly int m_NumOfRows;
-        static BoardTile[,] m_Board;
+        readonly int m_NumOfRows; 
+        BoardTile[,] m_Board;
 
         public GameBoard(int i_NumOfColumns,int i_NumOfRows)
         {
             m_NumOfColumns = i_NumOfColumns;
             m_NumOfRows = i_NumOfRows;
+            initializeBoard( m_NumOfColumns, m_NumOfRows,ref m_Board);
         }
         
         private (int, int) getValidBoardSize()
@@ -40,8 +41,9 @@ namespace MemorizeCLI
             return (numberOfLinesInBoard, numberOfRowsInBoard);
         }
 
-        public void initializeBoard()
+        public void initializeBoard(int m_NumOfColumns, int m_NumOfRows,ref BoardTile[,] m_Board)
         {
+            m_Board = new BoardTile[m_NumOfColumns, m_NumOfRows];
             int shuffeledArrayIndexCounter = 0;
             char[] letters = new char[m_NumOfColumns * m_NumOfRows / 2];
             for (int i = 0; i < letters.Length; i++)
@@ -64,9 +66,9 @@ namespace MemorizeCLI
                 shuffeledBoard[j] = temp;
             }
 
-            for (int i = 0; i < m_NumOfColumns; ++i)
+            for(int i = 0; i < m_NumOfColumns; ++i)
             {
-                for (int j = 0; j < m_NumOfRows; ++j)
+                for(int j = 0; j < m_NumOfRows; ++j)
                 {
                     m_Board[i, j] = new BoardTile(shuffeledBoard[shuffeledArrayIndexCounter], i, j);
                     shuffeledArrayIndexCounter++;

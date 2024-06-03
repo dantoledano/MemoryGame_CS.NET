@@ -8,11 +8,10 @@ namespace MemorizeCLI
 {
     internal class BoardTile
     {
-        char m_Value { get; set; } 
-        bool m_IsRevealed { get; set; }
-        int m_ColumnIndexInBoard { get; set; }
-        int m_RowIndexInBoard { get; set; }
-
+        private char m_Value;
+        private bool m_IsRevealed;
+        private int m_ColumnIndexInBoard;
+        private int m_RowIndexInBoard;
         public char Value
         {
             get { return m_Value; }

@@ -7,3 +7,12 @@ C:\Users\roisolomon\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.c
 C:\Users\roisolomon\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\Memorize.3CA25995.Up2Date
 C:\Users\roisolomon\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.exe
 C:\Users\roisolomon\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.pdb
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\bin\Debug\MemorizeCLI.exe.config
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\bin\Debug\MemorizeCLI.exe
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\bin\Debug\MemorizeCLI.pdb
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\bin\Debug\Ex02.ConsoleUtils.dll
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.csproj.AssemblyReference.cache
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.csproj.CoreCompileInputs.cache
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\Memorize.3CA25995.Up2Date
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.exe
+C:\Users\Dan Toledano\source\repos\MemorizeCLI\MemorizeCLI\obj\Debug\MemorizeCLI.pdb

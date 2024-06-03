@@ -29,6 +29,7 @@ namespace MemorizeCLI
                 runMenu();
             }
             ClearScreen();
+            
             DisplayGameInterface();
             //startGame
         }
@@ -70,7 +71,7 @@ namespace MemorizeCLI
                 m_GameDataManager.SecondPlayer.PlayerPoints);
 
             Console.WriteLine(scoreBoard);
-            m_GameDataManager.GameBoard.initializeBoard();
+            //m_GameDataManager.GameBoard.initializeBoard();
             m_GameDataManager.GameBoard.DisplayBoard();
         }
 
