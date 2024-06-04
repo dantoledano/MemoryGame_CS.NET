@@ -25,7 +25,7 @@ namespace MemorizeCLI
         {
             m_GameDataManager = new GameDataManager(i_NumOfRows, i_NumOfColumns);
             r_GameType = i_GameType;
-            s_currentGameStatus = eGameStatus.CurrentlyRunning;
+            //m_GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
             m_IsFirstSelection = false;
             m_IsMatch = false;
 
@@ -96,6 +96,14 @@ namespace MemorizeCLI
             get
             {
                 return m_GameDataManager.FirstPlayer.PlayerPoints;
+            }
+        }
+
+        public bool AreMatchingTiles
+        {
+            get
+            {
+                return m_IsMatch;
             }
         }
 

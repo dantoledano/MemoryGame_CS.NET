@@ -13,7 +13,7 @@ namespace MemorizeCLI
         public static void Main(string[] i_Args)
         {
             GameInterface g1 = new GameInterface();
-            g1.startGame();
+            g1.StartGame();
         
 
         }

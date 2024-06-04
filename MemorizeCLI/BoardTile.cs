@@ -44,5 +44,6 @@ namespace MemorizeCLI
             m_ColumnIndexInBoard = i_Column;
             m_RowIndexInBoard = i_Row;
         }
+
     }
 }

@@ -126,9 +126,12 @@ namespace MemorizeCLI
             }
         }
 
-        public BoardTile GetTile(int i_Row, int i_Column)
+        public BoardTile GetTile(string i_TileToIndexInMatrix)
         {
-            return m_Board[i_Row, i_Column];
+            int row = i_TileToIndexInMatrix[1] - '1';
+            int column = i_TileToIndexInMatrix[0] - 'A';
+
+            return m_Board[row, column];
         }
 
         //public bool AllTilesRevealed()

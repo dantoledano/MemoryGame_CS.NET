@@ -22,17 +22,74 @@ namespace MemorizeCLI
             r_GameMenu = new GameMenu();
         }
 
-        public void startGame()
+        public void StartGame()
         {
             if (GameLogicManager.GameStatus == eGameStatus.MainMenu)
             {
                 runMenu();
             }
-            ClearScreen();
-            
-            DisplayGameInterface();
-            //startGame
+            RunGame();
         }
+
+        private void finishGame()
+        {
+
+                DisplayGameInterface();
+                Console.WriteLine("BYE\n");
+                exitGame();
+                //Console.WriteLine(m_GameLogicManager.GetGameOverStatus());
+
+                //bool restartNeeded = CheckRestart();
+
+                //if (restartNeeded)
+                //{
+                //    ClearWindow();
+                //    restartGame();
+                //}
+                //else
+                //{
+                //    stopGame();
+                //}
+        }
+
+        private void RunGame()
+        {
+            while (m_GameLogicManager.GameDataManager.GameStatus == eGameStatus.CurrentlyRunning)
+            {
+                DisplayGameInterface();
+                string playerInput = getPlayerNextMove();
+                //sendinput
+            }
+        }
+
+        private void sendInputAndUpdateUI(string i_PlayerInput)
+        {
+            if (i_PlayerInput == "Q")
+            {
+                exitGame();
+            }
+            else
+            {
+                m_GameLogicManager.updateTurn(m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput));
+
+                if (m_GameLogicManager.AreMatchingTiles)
+                {
+                    DisplayGameInterface();
+                    Console.WriteLine("Not Matching! Try again next time.");
+
+                    System.Threading.Thread.Sleep(2000);
+
+                    m_GameLogicManager.TogglePlayer();
+                }
+            }
+        }
+
+        private void exitGame()
+        {
+            Console.WriteLine("Thanks For Playing. Have A Nice Day!");
+            Environment.Exit(0);
+        }
+
 
         private void runMenu()
         {
@@ -61,7 +118,7 @@ namespace MemorizeCLI
 
         private void DisplayGameInterface()
         {
-            Console.WriteLine($"{m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName}'s Turn\n");
+            Console.WriteLine("{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
 
             string scoreBoard = string.Format("Score Board: {0}:{1} | {2}:{3}",
                 m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName,
@@ -143,10 +200,7 @@ namespace MemorizeCLI
         {
             bool isHiddenTile = true;
 
-            int column = i_TileHumanPlayerPicked[0] - 'A';
-            int row = i_TileHumanPlayerPicked[1] - '1';
-
-            if (m_GameLogicManager.GameDataManager.GameBoard.GetTile(row, column).IsRevealed)
+            if (m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_TileHumanPlayerPicked).IsRevealed)
             {
                 Console.WriteLine("Wrong Input. You Picked A Tile That Is Already Revealed!\n");
                 isHiddenTile = false;

@@ -21,7 +21,7 @@ namespace MemorizeCLI
         {
             m_NumOfColumns = i_NumOfColumns;
             m_NumOfRows = i_NumOfRows;
-            m_GameStatus = eGameStatus.MainMenu;
+            m_GameStatus = eGameStatus.CurrentlyRunning;
             m_FirstPlayer = new Player(0);
             m_SecondPlayer = new Player(0);
         }
