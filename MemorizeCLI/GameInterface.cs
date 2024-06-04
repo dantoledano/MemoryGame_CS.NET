@@ -118,6 +118,7 @@ namespace MemorizeCLI
 
         private void DisplayGameInterface()
         {
+            Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
 
             string scoreBoard = string.Format("Score Board: {0}:{1} | {2}:{3}",
@@ -230,8 +231,9 @@ namespace MemorizeCLI
         private bool ValidateRowDigit(char i_ChosenRow)
         {
             bool isValidRowDigit = true;
+            char largerstValidDigit = (char)('0' + m_GameLogicManager.GameDataManager.NumOfRows);
 
-            if (i_ChosenRow < '1' || i_ChosenRow > m_GameLogicManager.GameDataManager.NumOfRows)
+            if (i_ChosenRow < '1' || i_ChosenRow > largerstValidDigit)
             {
                 Console.WriteLine("Wrong Input. Enter Row Between {0}-{1}",1,m_GameLogicManager.GameDataManager.NumOfRows);
                 isValidRowDigit = false;
