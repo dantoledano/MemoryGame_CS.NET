@@ -23,7 +23,7 @@ namespace MemorizeCLI
 
         public GameLogicManager(Player i_Player1, Player i_Player2, int i_NumOfRows, int i_NumOfColumns, eGameType i_GameType)
         {
-            m_GameDataManager = new GameDataManager(i_NumOfRows, i_NumOfColumns);
+            m_GameDataManager = new GameDataManager(i_NumOfRows, i_NumOfColumns, i_GameType , i_Player1, i_Player2);
             r_GameType = i_GameType;
             //m_GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
             m_IsFirstSelection = false;
