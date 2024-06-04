@@ -20,6 +20,7 @@ namespace MemorizeCLI
             Console.WriteLine("Choose Your Prefered Game Type:");
             eGameType gameType = GetAndValidateGameType(out o_secondPlayerName);
             GetAndValidateMatrixDimenssions(out o_numOfRows, out o_numOfColumns);
+            // change game status to running
             return gameType;
         }
 
