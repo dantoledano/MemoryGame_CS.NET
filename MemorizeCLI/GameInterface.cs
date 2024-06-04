@@ -58,11 +58,11 @@ namespace MemorizeCLI
             {
                 DisplayGameInterface();
                 string playerInput = getPlayerNextMove();
-                //sendinput
+                updateTurnAndView(playerInput);
             }
         }
 
-        private void sendInputAndUpdateUI(string i_PlayerInput)
+        private void updateTurnAndView(string i_PlayerInput)
         {
             if (i_PlayerInput == "Q")
             {
