@@ -26,8 +26,9 @@ namespace MemorizeCLI
             m_GameDataManager = new GameDataManager(i_NumOfRows, i_NumOfColumns, i_GameType , i_Player1, i_Player2);
             r_GameType = i_GameType;
             //m_GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
-            m_IsFirstSelection = false;
+            m_IsFirstSelection = true;
             m_IsMatch = false;
+
 
             //if(this.r_GameType == eGameType.HumanVComputer)
             //{
@@ -135,12 +136,12 @@ namespace MemorizeCLI
             }
         }
 
-        public void updateTurn(BoardTile i_UserSelection)
+        public void updateTurn(ref BoardTile i_UserSelection)
         {
 
             if (!m_IsMatch)
             {
-                updateNextTurn(i_UserSelection);
+                updateNextTurn(ref i_UserSelection);
             }
             if ((firstPlayerScore + secondPlayerScore) == ((BoardHeight * BoardWidth) / 2))
             {
@@ -152,9 +153,9 @@ namespace MemorizeCLI
 
         // private void AddToAiMemory(BoardTile i_UserSelection);//לשנות שם פרמטר
 
-        private void updateNextTurn(BoardTile i_UserSelection)
+        private void updateNextTurn(ref BoardTile i_UserSelection)
         {
-            this.m_SecondSelection = i_UserSelection;
+            this.m_CurrentSelection = i_UserSelection;
             //if(this.r_GameType == eGameType.HumanVComputer)
             //{
 

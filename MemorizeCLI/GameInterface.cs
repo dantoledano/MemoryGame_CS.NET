@@ -14,7 +14,7 @@ namespace MemorizeCLI
         //private GameDataManager m_GameDataManager;
         private const string QuitGame = "Q";
         private readonly GameMenu r_GameMenu;
-        private GameLogicManager m_GameLogicManager;
+        private  GameLogicManager m_GameLogicManager;
 
 
         public GameInterface()
@@ -64,13 +64,14 @@ namespace MemorizeCLI
 
         private void updateTurnAndView(string i_PlayerInput)
         {
+            BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
             if (i_PlayerInput == "Q")
             {
                 exitGame();
             }
             else
             {
-                m_GameLogicManager.updateTurn(m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput));
+                m_GameLogicManager.updateTurn(ref selectedTile);
 
                 if (m_GameLogicManager.AreMatchingTiles)
                 {
@@ -110,9 +111,6 @@ namespace MemorizeCLI
             }
 
             m_GameLogicManager = new GameLogicManager(firstPlayer, secondPlayer, rows, columns,gameType);
-            
-
-
         }
 
 
