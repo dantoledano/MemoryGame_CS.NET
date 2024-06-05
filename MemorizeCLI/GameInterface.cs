@@ -24,11 +24,13 @@ namespace MemorizeCLI
 
         public void StartGame()
         {
-            if (GameLogicManager.GameStatus == eGameStatus.MainMenu)
-            {
-                runMenu();
-            }
+            //if (m_GameLogicManager.GameStatus == eGameStatus.MainMenu)
+            //{
+            //    runMenu();
+            //}
+            runMenu();
             RunGame();
+            finishGame();
         }
 
         private void finishGame()

@@ -12,7 +12,7 @@ namespace MemorizeCLI
         private const int k_MaxMatrixColumns = 6;
         private const int k_MinMatrixRows = 4;
         private const int k_MinMatrixColumns = 4;
-        private static eGameStatus s_currentGameStatus = eGameStatus.MainMenu;
+        //private static eGameStatus s_currentGameStatus = eGameStatus.MainMenu;
         private GameDataManager m_GameDataManager;
         private readonly eGameType r_GameType;
         private BoardTile m_FirstSelection;
@@ -37,13 +37,13 @@ namespace MemorizeCLI
             //}
         }
 
-        public static eGameStatus GameStatus
-        {
-            get
-            {
-                return s_currentGameStatus;
-            }
-        }
+        //public static eGameStatus GameStatus
+        //{
+        //    get
+        //    {
+        //        return s_currentGameStatus;
+        //    }
+        //}
 
         public static int MaxMatrixRows
         {
@@ -158,7 +158,7 @@ namespace MemorizeCLI
             }
             if ((firstPlayerScore + secondPlayerScore) == ((BoardHeight * BoardWidth) / 2))
             {
-                s_currentGameStatus = eGameStatus.Over;
+                m_GameDataManager.GameStatus = eGameStatus.Over;
             }
 
         }
