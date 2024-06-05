@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|c:\\users\\dan toledano\\source\\repos\\memorizecli\\memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\gameinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gameinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|c:\\users\\dan toledano\\source\\repos\\memorizecli\\memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -54,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 174,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -71,13 +71,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "GameLogicManager.cs",
               "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameLogicManager.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\GameLogicManager.cs",
               "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameLogicManager.cs",
               "RelativeToolTip": "MemorizeCLI\\GameLogicManager.cs",
-              "ViewState": "AQIAAJkAAAAAAAAAAAAIwC0AAAALAAAA",
+              "ViewState": "AQIAAHgAAAAAAAAAAAAowKMAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T07:31:08.109Z",
               "EditorCaption": ""
@@ -110,13 +110,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "GameInterface.cs",
               "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\GameInterface.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs",
-              "RelativeToolTip": "MemorizeCLI\\GameInterface.cs",
-              "ViewState": "AQIAADgAAAAAAAAAAAAiwCAAAAAZAAAA",
+              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs*",
+              "RelativeToolTip": "MemorizeCLI\\GameInterface.cs*",
+              "ViewState": "AQIAAIIAAAAAAAAAAADwv4kAAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T13:40:41.695Z",
               "EditorCaption": ""

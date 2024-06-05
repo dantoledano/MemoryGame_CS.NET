@@ -36,7 +36,8 @@ namespace MemorizeCLI
         private void finishGame()
         {
 
-                DisplayGameInterface();
+                //DisplayGameInterface();
+                printWinnner();
                 Console.WriteLine("BYE\n");
                 exitGame();
                 //Console.WriteLine(m_GameLogicManager.GetGameOverStatus());
@@ -52,6 +53,21 @@ namespace MemorizeCLI
                 //{
                 //    stopGame();
                 //}
+        }
+
+        private void printWinnner()
+        {
+            if(m_GameLogicManager.firstPlayerScore == m_GameLogicManager.secondPlayerScore)
+            {
+                Console.WriteLine("It's A Tie !!!\n");
+            }
+            else
+            {
+                string name = m_GameLogicManager.firstPlayerScore > m_GameLogicManager.secondPlayerScore
+                                  ? m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName
+                                  : m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName;
+                Console.WriteLine($"{name} Is The Winner !!!\n");
+            }
         }
 
         private void RunGame()
@@ -119,7 +135,7 @@ namespace MemorizeCLI
             Ex02.ConsoleUtils.Screen.Clear();
             Console.WriteLine("{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
 
-            string scoreBoard = string.Format("Score Board: {0}:{1} | {2}:{3}",
+            string scoreBoard = string.Format("Score Board: {0}:{1} | {2}:{3}\n",
                 m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName,
                 m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints,
                 m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName,
