@@ -20,6 +20,7 @@ namespace MemorizeCLI
         private BoardTile m_CurrentSelection;
         private bool m_IsFirstSelection;
         private bool m_IsMatch;
+        private bool m_isSecondTurn;
 
         public GameLogicManager(Player i_Player1, Player i_Player2, int i_NumOfRows, int i_NumOfColumns, eGameType i_GameType)
         {
@@ -28,6 +29,7 @@ namespace MemorizeCLI
             //m_GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
             m_IsFirstSelection = true;
             m_IsMatch = false;
+            m_isSecondTurn = false;
 
 
             //if(this.r_GameType == eGameType.HumanVComputer)
@@ -108,6 +110,14 @@ namespace MemorizeCLI
             }
         }
 
+        public bool IsFirstSelection
+        {
+            get
+            {
+                return m_IsFirstSelection;
+            }
+        }
+
         public int secondPlayerScore
         {
             get
@@ -171,7 +181,7 @@ namespace MemorizeCLI
             {
                 BoardTile firstBoardTileSelected = m_FirstSelection;
                 BoardTile secondBoardTileSelected = m_CurrentSelection;
-
+                m_IsMatch = false;
                 secondBoardTileSelected.IsRevealed = true;
                 this.m_IsMatch = firstBoardTileSelected.Value == secondBoardTileSelected.Value;
 

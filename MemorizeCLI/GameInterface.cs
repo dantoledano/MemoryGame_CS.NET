@@ -72,14 +72,11 @@ namespace MemorizeCLI
             else
             {
                 m_GameLogicManager.updateTurn(ref selectedTile);
-
-                if (m_GameLogicManager.AreMatchingTiles)
+                DisplayGameInterface();
+                if (m_GameLogicManager.IsFirstSelection && !m_GameLogicManager.AreMatchingTiles)
                 {
-                    DisplayGameInterface();
                     Console.WriteLine("Not Matching! Try again next time.");
-
                     System.Threading.Thread.Sleep(2000);
-
                     m_GameLogicManager.TogglePlayer();
                 }
             }
