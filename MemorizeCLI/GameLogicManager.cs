@@ -8,6 +8,7 @@ namespace MemorizeCLI
 {
     internal class GameLogicManager
     {
+        private static readonly Random sr_Random = new Random();
         private const int k_MaxMatrixRows = 6;
         private const int k_MaxMatrixColumns = 6;
         private const int k_MinMatrixRows = 4;
@@ -19,31 +20,58 @@ namespace MemorizeCLI
         private BoardTile m_SecondSelection;
         private BoardTile m_CurrentSelection;
         private bool m_IsFirstSelection;
+        private readonly Dictionary<BoardTile, char> r_ComputerMemory;
         private bool m_IsMatch;
-        
+        private bool m_DoesComputerFoundMatch;
+        private bool m_DoesComputerHasMatches;
+        private BoardTile m_ComputerSelectedTile;
+
 
         public GameLogicManager(Player i_Player1, Player i_Player2, int i_NumOfRows, int i_NumOfColumns, eGameType i_GameType)
         {
-            m_GameDataManager = new GameDataManager(i_NumOfRows, i_NumOfColumns, i_GameType , i_Player1, i_Player2);
+            m_GameDataManager = new GameDataManager(i_NumOfRows, i_NumOfColumns, i_GameType, i_Player1, i_Player2);
             r_GameType = i_GameType;
-            //m_GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
             m_IsFirstSelection = true;
+
             m_IsMatch = false;
-
-
-            //if(this.r_GameType == eGameType.HumanVComputer)
-            //{
-            //    r_AiMemory = new Dictionary<BoardTile, char>;
-            //}
+            m_DoesComputerFoundMatch = false;
+            m_DoesComputerHasMatches = false;
+            if (this.r_GameType == eGameType.HumanVComputer)
+            {
+                r_ComputerMemory = new Dictionary<BoardTile, char>();
+            }
         }
 
-        //public static eGameStatus GameStatus
-        //{
-        //    get
-        //    {
-        //        return s_currentGameStatus;
-        //    }
-        //}
+        public bool ComputerHasAMatch
+        {
+            get
+            {
+                return m_DoesComputerHasMatches;
+            }
+            set { m_DoesComputerHasMatches = value; }
+
+        }
+
+        public Dictionary<BoardTile, char> ComputerMemory
+        {
+            get
+            {
+                return r_ComputerMemory;
+            }
+        }
+
+        public BoardTile SelectedBoardTile
+        {
+            get
+            {
+                return m_ComputerSelectedTile;
+            }
+            set
+            {
+                m_ComputerSelectedTile = value;
+            }
+        }
+
 
         public static int MaxMatrixRows
         {
@@ -158,49 +186,62 @@ namespace MemorizeCLI
             }
             if ((firstPlayerScore + secondPlayerScore) == ((BoardHeight * BoardWidth) / 2))
             {
-                m_GameDataManager.GameStatus = eGameStatus.Over;
+                 GameDataManager.GameStatus = eGameStatus.Over;
             }
 
         }
 
 
-        // private void AddToAiMemory(BoardTile i_UserSelection);//לשנות שם פרמטר
+        private void UpdateComputerMemory(BoardTile i_UserSelection)
+        {
 
+            if (!r_ComputerMemory.ContainsKey(i_UserSelection))
+            {
+                r_ComputerMemory.Add(i_UserSelection, GameDataManager.GameBoard.BoardTile[i_UserSelection.RowIndexInBoard, i_UserSelection.ColumnIndexInBoard].Value);
+            }
+        }
         private void updateNextTurn(ref BoardTile i_UserSelection)
         {
-            this.m_CurrentSelection = i_UserSelection;
-            //if(this.r_GameType == eGameType.HumanVComputer)
-            //{
+            m_CurrentSelection = i_UserSelection;
 
-            //}
-
-            if (this.m_IsFirstSelection)
+            if (r_GameType == eGameType.HumanVComputer)
             {
-                this.m_FirstSelection = this.m_CurrentSelection;
+                if (GameLogicManager.RandomizeANumber(0, 100) < 70)
+                {
+                    UpdateComputerMemory(m_CurrentSelection);
+                }
+            }
+
+            if (m_IsFirstSelection)
+            {
+                m_FirstSelection = m_CurrentSelection;
                 m_CurrentSelection.IsRevealed = true;
-                this.m_IsFirstSelection = false;
+                m_IsFirstSelection = false;
             }
             else
             {
                 BoardTile firstBoardTileSelected = m_FirstSelection;
                 BoardTile secondBoardTileSelected = m_CurrentSelection;
-                m_IsMatch = false;
+
                 secondBoardTileSelected.IsRevealed = true;
+
                 m_IsMatch = firstBoardTileSelected.Value == secondBoardTileSelected.Value;
 
                 if (m_IsMatch)
                 {
-                    //if(this.r_GameType == eGameType.HumanVComputer)
-                    //{
-
-                    //}
+                    if (r_GameType == eGameType.HumanVComputer)
+                    {
+                        r_ComputerMemory.Remove(m_CurrentSelection);
+                        r_ComputerMemory.Remove(m_FirstSelection);
+                    }
 
                     CurrentPlayer.PlayerPoints++;
                 }
-                //m_IsMatch = false;
+
                 m_IsFirstSelection = true;
             }
         }
+
 
         public void TogglePlayer()
         {
@@ -212,17 +253,144 @@ namespace MemorizeCLI
             this.m_IsMatch = false;
         }
 
-        //public void RestartGame(int i_NumOfRows, int i_NumOfColumns)// לחשוב על אופציה של ריסטארט
-        //{
-        //    CurrentPlayer = this.m_GameDataManager.FirstPlayer;
-        //    this.m_GameDataManager.FirstPlayer.PlayerPoints = 0;
-        //    this.m_GameDataManager.SecondPlayer.PlayerPoints = 0;
+        public string CalculateComputerInput()
+        {
+            string computerSelection;
 
-        //    this.m_GameDataManager.NumOfRows = i_NumOfRows;
-        //    this.m_GameDataManager.NumOfColumns = i_NumOfColumns;
-        //}
+            if (r_ComputerMemory.Count == 0)
+            {
+                m_DoesComputerHasMatches = false;
+                computerSelection = getRandomUnmemorizedCell();
+            }
+            else
+            {
 
+                computerSelection = m_IsFirstSelection ?
+                    calculateFirstSelection() :
+                    calculateSecondSelection();
+            }
 
+            return computerSelection;
+        }
+
+        private string calculateFirstSelection()
+        {
+            string firstSelection = null;
+
+            m_DoesComputerFoundMatch = findLetterMatch(ref firstSelection);
+
+            if (m_DoesComputerFoundMatch)
+            {
+                m_DoesComputerHasMatches = true;
+            }
+            else
+            {
+                m_DoesComputerHasMatches = false;
+                firstSelection = getRandomUnmemorizedCell();
+            }
+
+            return firstSelection;
+        }
+
+        private string calculateSecondSelection()
+        {
+            string secondSelection;
+
+            if (m_DoesComputerFoundMatch)
+            {
+                secondSelection = m_ComputerSelectedTile.ParseToString();
+            }
+            else
+            {
+                secondSelection = findLetterInMemory(m_ComputerSelectedTile);
+
+                if (secondSelection != null)
+                {
+                    m_DoesComputerHasMatches = true;
+                }
+                else
+                {
+                    m_DoesComputerHasMatches = false;
+                    secondSelection = getRandomUnmemorizedCell();
+                }
+            }
+            return secondSelection;
+        }
+
+        private string findLetterInMemory(BoardTile i_FirstSelectionCell)
+        {
+            string foundLetter = null;
+
+            foreach (var memorizedLetter in r_ComputerMemory)
+            {
+                BoardTile currentKey = memorizedLetter.Key;
+                char firstSelectionLetter = GameDataManager.GameBoard.BoardTile[i_FirstSelectionCell.RowIndexInBoard, i_FirstSelectionCell.ColumnIndexInBoard].Value;
+
+                if (!currentKey.Equals(i_FirstSelectionCell) && memorizedLetter.Value == firstSelectionLetter)
+                {
+                    foundLetter = memorizedLetter.Key.ParseToString();
+                }
+            }
+
+            return foundLetter;
+        }
+
+        private string getRandomUnmemorizedCell() //to change name
+        {
+            int unsavedTileCoordinatesIndex = 0;
+            int row = GameDataManager.GameBoard.BoardTile.GetLength(0);
+            int column = GameDataManager.GameBoard.BoardTile.GetLength(1);
+            int sizeOfUnsavedTilesArray = (BoardHeight * BoardWidth) - r_ComputerMemory.Count;
+            BoardTile[] unsavedTiles = new BoardTile[sizeOfUnsavedTilesArray];
+
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < column; j++)
+                {
+                    if (!GameDataManager.GameBoard.BoardTile[i, j].IsRevealed)
+                    {
+                        if (!r_ComputerMemory.ContainsKey(new BoardTile(i, j)))
+                        {
+                            if(unsavedTileCoordinatesIndex < sizeOfUnsavedTilesArray)
+                                unsavedTiles[unsavedTileCoordinatesIndex++] = new BoardTile(i, j);
+                        }
+                    }
+                }
+            }
+
+            unsavedTileCoordinatesIndex = RandomizeANumber(0, unsavedTileCoordinatesIndex);
+            m_ComputerSelectedTile = unsavedTiles[unsavedTileCoordinatesIndex];
+
+            return m_ComputerSelectedTile.ParseToString();
+        }
+
+        private bool findLetterMatch(ref string i_MemorizedMatchingLetter)
+        {
+            bool foundMatch = false;
+
+            foreach (var firstCharInComputerMemory in r_ComputerMemory)
+            {
+                foreach (var secondCharInComputerMemory in r_ComputerMemory)
+                {
+                    if (!firstCharInComputerMemory.Key.Equals(secondCharInComputerMemory.Key))
+                    {
+                        if (firstCharInComputerMemory.Value == secondCharInComputerMemory.Value)
+                        {
+                            i_MemorizedMatchingLetter = firstCharInComputerMemory.Key.ParseToString();
+                            m_ComputerSelectedTile = secondCharInComputerMemory.Key;
+                            foundMatch = true;
+                        }
+                    }
+                }
+            }
+            
+            return foundMatch;
+        }
+
+        public static int RandomizeANumber(int i_Start, int i_End)
+        {
+            return sr_Random.Next(i_Start, i_End);
+        }
 
     }
 }

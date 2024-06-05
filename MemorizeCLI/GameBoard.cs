@@ -9,9 +9,9 @@ namespace MemorizeCLI
 {
     internal class GameBoard
     {
-        readonly int m_NumOfColumns;
-        readonly int m_NumOfRows; 
-        readonly BoardTile[,] m_Board;
+        private int m_NumOfColumns;
+        private int m_NumOfRows; 
+        private BoardTile[,] m_Board;
 
         public GameBoard(int i_NumOfRows, int i_NumOfColumns)
         {
@@ -20,6 +20,8 @@ namespace MemorizeCLI
             InitializeBoard(m_NumOfRows,m_NumOfColumns ,ref m_Board);
         }
         
+
+
         private (int, int) getValidBoardSize()
         {
             int numberOfLinesInBoard, numberOfRowsInBoard;
@@ -118,6 +120,14 @@ namespace MemorizeCLI
             return isSuccededToReveal;
         }
 
+        public BoardTile[,] BoardTile
+        {
+            get
+            {
+                return m_Board;
+            }
+        }
+
         public void HideTile(int i_Column, int i_Row)
         {
             if (i_Row >= 0 && i_Row < m_NumOfColumns && i_Column >= 0 && i_Column < m_NumOfRows)
@@ -133,6 +143,7 @@ namespace MemorizeCLI
 
             return m_Board[row, column];
         }
+
 
         //public bool AllTilesRevealed()
         //{

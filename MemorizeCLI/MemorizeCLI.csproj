@@ -39,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BoardTile.cs" />
+    <Compile Include="eComputerLevel.cs" />
     <Compile Include="eGameStatus.cs" />
     <Compile Include="eGameType.cs" />
     <Compile Include="ePlayerType.cs" />

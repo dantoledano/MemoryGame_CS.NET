@@ -112,9 +112,9 @@ namespace MemorizeCLI
         {
             string firstPlayerName, secondPlayerName;
             int columns, rows;
-
+            eComputerLevel computerLevel;
             eGameType gameType =
-                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns );
+                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns, out computerLevel);
             Player firstPlayer = new Player(firstPlayerName, ePlayerType.Human);
             Player? secondPlayer;
             if (gameType == eGameType.HumanVHuman)
@@ -165,7 +165,8 @@ namespace MemorizeCLI
             }
             else
             {
-                //comuter input here will be ai move
+                playerNextMove = m_GameLogicManager.CalculateComputerInput();
+                displayComputerProccess();
             }
 
             return playerNextMove;
@@ -268,6 +269,28 @@ namespace MemorizeCLI
             }
 
             return isValidLetterColumn;
+        }
+
+        private void displayComputerProccess()
+        {
+            string computerMessage = "Computer Recalls A Match.";
+
+            if (!m_GameLogicManager.ComputerHasAMatch)
+            {
+                computerMessage = "Proceccing.";
+                Console.Write(computerMessage);
+                System.Threading.Thread.Sleep(1000);
+                Console.Write('.');
+                System.Threading.Thread.Sleep(1000);
+                Console.Write('.');
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            else
+            {
+                Console.Write(computerMessage);
+                System.Threading.Thread.Sleep(2000);
+            }
         }
 
         public void ClearScreen()

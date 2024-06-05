@@ -1,50 +1,50 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\",
+  "WorkspaceRootPath": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\gameinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gameinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|c:\\users\\dan toledano\\source\\repos\\memorizecli\\memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\eplayertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\eplayertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\boardtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\boardtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamelogicmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\egamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\egamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamedatamanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|c:\\users\\roisolomon\\source\\repos\\memorizecli\\memorizecli\\gameinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gameinterface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gameboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\player.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\memorizecli\\egametype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\gamemenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\boardtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\boardtile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\eplayertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\eplayertype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\egametype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\egametype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\memorizecli\\egamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{13A2E1AA-5244-40B9-83E3-753F088ECC9E}|MemorizeCLI\\MemorizeCLI.csproj|solutionrelative:memorizecli\\egamestatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,150 +54,146 @@
       "DocumentGroups": [
         {
           "DockedWidth": 174,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameBoard.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameBoard.cs",
-              "RelativeDocumentMoniker": "MemorizeCLI\\GameBoard.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameBoard.cs",
-              "RelativeToolTip": "MemorizeCLI\\GameBoard.cs",
-              "ViewState": "AQIAAH4AAAAAAAAAAADwv4YAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T08:46:00.231Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GameLogicManager.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameLogicManager.cs",
-              "RelativeDocumentMoniker": "MemorizeCLI\\GameLogicManager.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameLogicManager.cs",
-              "RelativeToolTip": "MemorizeCLI\\GameLogicManager.cs",
-              "ViewState": "AQIAAHgAAAAAAAAAAAAowKMAAAAIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T07:31:08.109Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "GameDataManager.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameDataManager.cs",
-              "RelativeDocumentMoniker": "MemorizeCLI\\GameDataManager.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameDataManager.cs",
-              "RelativeToolTip": "MemorizeCLI\\GameDataManager.cs",
-              "ViewState": "AQIAAEkAAAAAAAAAAAAAwAgAAAATAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T15:53:57.212Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "GameMenu.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameMenu.cs",
-              "RelativeDocumentMoniker": "MemorizeCLI\\GameMenu.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameMenu.cs",
-              "RelativeToolTip": "MemorizeCLI\\GameMenu.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAsAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T06:55:29.591Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
               "Title": "GameInterface.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\GameInterface.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs*",
-              "RelativeToolTip": "MemorizeCLI\\GameInterface.cs*",
-              "ViewState": "AQIAAIIAAAAAAAAAAADwv4kAAABPAAAA",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameInterface.cs",
+              "RelativeToolTip": "MemorizeCLI\\GameInterface.cs",
+              "ViewState": "AQIAAEIAAAB6ZmZmZuYowEoAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-02T13:40:41.695Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ePlayerType.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\ePlayerType.cs",
-              "RelativeDocumentMoniker": "MemorizeCLI\\ePlayerType.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\ePlayerType.cs",
-              "RelativeToolTip": "MemorizeCLI\\ePlayerType.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAOAAAA",
+              "DocumentIndex": 7,
+              "Title": "BoardTile.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\BoardTile.cs",
+              "RelativeDocumentMoniker": "MemorizeCLI\\BoardTile.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\BoardTile.cs",
+              "RelativeToolTip": "MemorizeCLI\\BoardTile.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADYAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T13:02:23.883Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-03T11:30:12.97Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BoardTile.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\BoardTile.cs",
-              "RelativeDocumentMoniker": "MemorizeCLI\\BoardTile.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\BoardTile.cs",
-              "RelativeToolTip": "MemorizeCLI\\BoardTile.cs",
-              "ViewState": "AQIAAA8AAADgmZmZmRkuwB4AAAAJAAAA",
+              "DocumentIndex": 4,
+              "Title": "GameBoard.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameBoard.cs",
+              "RelativeDocumentMoniker": "MemorizeCLI\\GameBoard.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameBoard.cs",
+              "RelativeToolTip": "MemorizeCLI\\GameBoard.cs",
+              "ViewState": "AQIAAA4AAAAAAAAAAAAqwBQAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-03T11:30:12.97Z",
+              "WhenOpened": "2024-06-05T11:06:24.069Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "GameMenu.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameMenu.cs",
+              "RelativeDocumentMoniker": "MemorizeCLI\\GameMenu.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameMenu.cs",
+              "RelativeToolTip": "MemorizeCLI\\GameMenu.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAuwB0AAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T09:46:00.449Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GameDataManager.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameDataManager.cs",
+              "RelativeDocumentMoniker": "MemorizeCLI\\GameDataManager.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameDataManager.cs",
+              "RelativeToolTip": "MemorizeCLI\\GameDataManager.cs",
+              "ViewState": "AQIAACMAAABAzczMzAw6wB4AAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-05T08:47:59.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameLogicManager.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameLogicManager.cs",
+              "RelativeDocumentMoniker": "MemorizeCLI\\GameLogicManager.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\GameLogicManager.cs",
+              "RelativeToolTip": "MemorizeCLI\\GameLogicManager.cs",
+              "ViewState": "AQIAAMMAAAAAADQzMzOzv7oAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-03T07:31:08.109Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ePlayerType.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\ePlayerType.cs",
+              "RelativeDocumentMoniker": "MemorizeCLI\\ePlayerType.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\ePlayerType.cs",
+              "RelativeToolTip": "MemorizeCLI\\ePlayerType.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-01T13:02:23.883Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Program.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Program.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\Program.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Program.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Program.cs",
               "RelativeToolTip": "MemorizeCLI\\Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAaAAAA",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAmwA8AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-31T19:00:31.644Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "eGameStatus.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameStatus.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameStatus.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\eGameStatus.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameStatus.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameStatus.cs",
               "RelativeToolTip": "MemorizeCLI\\eGameStatus.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T13:14:58.314Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-01T13:14:58.314Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 5,
               "Title": "Player.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Player.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Player.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\Player.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Player.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\Player.cs",
               "RelativeToolTip": "MemorizeCLI\\Player.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAJAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAAABkAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-06-03T08:34:10.025Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 9,
               "Title": "eGameType.cs",
-              "DocumentMoniker": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameType.cs",
+              "DocumentMoniker": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameType.cs",
               "RelativeDocumentMoniker": "MemorizeCLI\\eGameType.cs",
-              "ToolTip": "C:\\Users\\Dan Toledano\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameType.cs",
+              "ToolTip": "C:\\Users\\roisolomon\\source\\repos\\MemorizeCLI\\MemorizeCLI\\eGameType.cs",
               "RelativeToolTip": "MemorizeCLI\\eGameType.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-01T12:55:03.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-01T12:55:03.579Z"
             }
           ]
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,8 +9,12 @@ namespace MemorizeCLI
 {
     internal class GameMenu
     {
+        private const string k_Beginner = "1";
+        private const string k_Novice = "2";
+        private const string k_Professional = "3";
 
-        public eGameType RunMenuScreen(out string o_FirstPlayerName, out string o_secondPlayerName,out int o_numOfRows, out int o_numOfColumns)
+        public eGameType RunMenuScreen(out string o_FirstPlayerName,
+            out string o_secondPlayerName,out int o_numOfRows, out int o_numOfColumns, out eComputerLevel o_computerLevel)
         {
             o_numOfColumns = 4;
             o_numOfRows = 4;
@@ -18,7 +23,7 @@ namespace MemorizeCLI
             o_FirstPlayerName = Console.ReadLine();
             Console.WriteLine($"Hello {o_FirstPlayerName}");
             Console.WriteLine("Choose Your Prefered Game Type:");
-            eGameType gameType = GetAndValidateGameType(out o_secondPlayerName);
+            eGameType gameType = GetAndValidateGameType(out o_secondPlayerName, out o_computerLevel);
             GetAndValidateMatrixDimenssions(out o_numOfRows, out o_numOfColumns);
             Ex02.ConsoleUtils.Screen.Clear();
             return gameType;
@@ -82,9 +87,11 @@ namespace MemorizeCLI
             return isValidMatrixDimenssions;
         }
 
-        private eGameType GetAndValidateGameType(out string o_secondPlayerName)
+        private eGameType GetAndValidateGameType(out string o_secondPlayerName, out eComputerLevel o_computerLevel)
         {
             eGameType gameType = eGameType.HumanVComputer;
+            o_computerLevel = eComputerLevel.Beginner;
+            string o_computerLevelChoice = string.Empty;
             o_secondPlayerName = "0";
             Console.WriteLine("1) Human Vs Human");
             Console.WriteLine("2) Human Vs Computer");
@@ -95,8 +102,56 @@ namespace MemorizeCLI
                 o_secondPlayerName = Console.ReadLine();
                 gameType = eGameType.HumanVHuman;
             }
+            else
+            {
+                o_secondPlayerName = "Computer";
+                gameType = eGameType.HumanVComputer;
+                Console.WriteLine("Please Choose Level Of Computer:");
+                showComputerLevels();
+                o_computerLevelChoice = Console.ReadLine();
+                validateComputerLevelPicked(ref o_computerLevelChoice);
+                if (o_computerLevelChoice == "1")
+                {
+                    o_computerLevel = eComputerLevel.Beginner;
+                }
+                else if (o_computerLevelChoice == "2")
+                {
+                    o_computerLevel = eComputerLevel.Novice;
+                }
+                else
+                {
+                    o_computerLevel = eComputerLevel.Professional; // wrong - beginner is alwys chosen check it later
+                }
+            }
 
             return gameType;
+        }
+        
+        private void showComputerLevels() // make it prettier later!
+        {
+            Console.WriteLine(@"1) Beginner
+2) Novice 
+3) Professional");
+        }
+
+        private bool validateComputerLevelPicked(ref string o_computerLevelChoice)
+        {
+            bool isValidLevelPicked = false;
+            while (!isValidLevelPicked)
+            {
+                if (o_computerLevelChoice != k_Beginner &&
+                    o_computerLevelChoice != k_Novice && o_computerLevelChoice != k_Professional)
+                {
+                    Console.WriteLine("Wrong Input! Pick A Number Between 1-3");
+
+                }
+                else
+                {
+                    isValidLevelPicked = true;
+                }
+            }
+
+            return isValidLevelPicked;
         }
 
 
