@@ -79,6 +79,7 @@ namespace MemorizeCLI
                     System.Threading.Thread.Sleep(2000);
                     m_GameLogicManager.TogglePlayer();
                 }
+                m_GameLogicManager.AreMatchingTiles = false;
             }
         }
 
