@@ -197,7 +197,7 @@ namespace MemorizeCLI
 
             if (!r_ComputerMemory.ContainsKey(i_UserSelection))
             {
-                r_ComputerMemory.Add(i_UserSelection, GameDataManager.GameBoard.BoardTile[i_UserSelection.RowIndexInBoard, i_UserSelection.ColumnIndexInBoard].Value);
+                r_ComputerMemory.Add(i_UserSelection, i_UserSelection.Value);
             }
         }
         private void updateNextTurn(ref BoardTile i_UserSelection)
@@ -387,10 +387,9 @@ namespace MemorizeCLI
             return foundMatch;
         }
 
-        public static int RandomizeANumber(int i_Start, int i_End)
+        public static int RandomizeANIndex(int i_Start, int i_End)
         {
             return sr_Random.Next(i_Start, i_End);
         }
-
     }
 }

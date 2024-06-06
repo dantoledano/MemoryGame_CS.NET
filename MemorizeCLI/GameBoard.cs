@@ -58,15 +58,15 @@ namespace MemorizeCLI
             Array.Copy(letters, 0, shuffeledBoard, 0, letters.Length);
             Array.Copy(letters, 0, shuffeledBoard, letters.Length, letters.Length);
 
-            // Shuffle the board
-            Random rand = new Random();
-            for (int i = shuffeledBoard.Length - 1; i > 0; i--)
-            {
-                int j = rand.Next(i + 1);
-                char temp = shuffeledBoard[i];
-                shuffeledBoard[i] = shuffeledBoard[j];
-                shuffeledBoard[j] = temp;
-            }
+            //// Shuffle the board
+            //Random rand = new Random();
+            //for (int i = shuffeledBoard.Length - 1; i > 0; i--)
+            //{
+            //    int j = rand.Next(i + 1);
+            //    char temp = shuffeledBoard[i];
+            //    shuffeledBoard[i] = shuffeledBoard[j];
+            //    shuffeledBoard[j] = temp;
+            //}
 
             for(int i = 0; i < i_NumOfRows; ++i)
             {
