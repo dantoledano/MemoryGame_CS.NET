@@ -316,11 +316,11 @@ namespace MemorizeCLI
         private bool validateColumnLetter(char i_ChosenColumn)
         {
             bool isValidLetterColumn = true;
-            char maxValidLetter = (char)('A' + m_GameLogicManager.GameDataManager.NumOfColumns);
+            char maxValidLetter = (char)('A' + m_GameLogicManager.GameDataManager.NumOfColumns - 1);
 
             if (i_ChosenColumn < 'A' || i_ChosenColumn > maxValidLetter - 1)
             {
-                Console.WriteLine("Wrong Input. Enter Column Between {0}-{1}", 'A', maxValidLetter - 1);
+                Console.WriteLine("Wrong Input. Enter Column Between {0}-{1}", 'A', maxValidLetter);
                 isValidLetterColumn = false;
             }
 
