@@ -24,10 +24,6 @@ namespace MemorizeCLI
 
         public void StartGame()
         {
-            //if (m_GameLogicManager.GameStatus == eGameStatus.MainMenu)
-            //{
-            //    runMenu();
-            //}
             runMenu();
             RunGame();
         }
@@ -60,19 +56,6 @@ namespace MemorizeCLI
                 }
 
                 return isRestartNeeded;
-                //Console.WriteLine(m_GameLogicManager.GetGameOverStatus());
-
-                //bool restartNeeded = CheckRestart();
-
-                //if (restartNeeded)
-                //{
-                //    ClearWindow();
-                //    restartGame();
-                //}
-                //else
-                //{
-                //    stopGame();
-                //}
         }
 
         private void printWinnner()
@@ -96,7 +79,7 @@ namespace MemorizeCLI
             {
                 DisplayGameInterface();
                 string playerInput = getPlayerNextMove();
-                updateTurnAndView(playerInput);
+                updateTurnAndView(playerInput.ToUpper());
             }
             printWinnner();
             if (RestartGameIfNeeded()) 
@@ -108,24 +91,23 @@ namespace MemorizeCLI
 
         private void updateTurnAndView(string i_PlayerInput)
         {
-            BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
             if (i_PlayerInput == "Q")
             {
                 exitGame();
             }
-            else
-            {
-                m_GameLogicManager.updateTurn(ref selectedTile);
-                DisplayGameInterface();
-                if (m_GameLogicManager.IsFirstSelection && !m_GameLogicManager.AreMatchingTiles)
-                {
-                    Console.WriteLine("Not Matching! Try again next time.");
-                    System.Threading.Thread.Sleep(2000);
-                    m_GameLogicManager.TogglePlayer();
-                }
-                m_GameLogicManager.AreMatchingTiles = false;
+
+            BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
+            m_GameLogicManager.updateTurn(ref selectedTile);
+            DisplayGameInterface();
+            if (m_GameLogicManager.IsFirstSelection && !m_GameLogicManager.AreMatchingTiles)
+            { 
+                Console.WriteLine("Not Matching! Try again next time.");
+                System.Threading.Thread.Sleep(2000);
+                m_GameLogicManager.TogglePlayer();
             }
+            m_GameLogicManager.AreMatchingTiles = false;
         }
+        
 
         private void exitGame()
         {
