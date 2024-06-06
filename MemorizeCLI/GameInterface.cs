@@ -318,9 +318,9 @@ namespace MemorizeCLI
             bool isValidLetterColumn = true;
             char maxValidLetter = (char)('A' + m_GameLogicManager.GameDataManager.NumOfColumns);
 
-            if (i_ChosenColumn < 'A' || i_ChosenColumn > maxValidLetter)
+            if (i_ChosenColumn < 'A' || i_ChosenColumn > maxValidLetter - 1)
             {
-                Console.WriteLine("Wrong Input. Enter Column Between {0}-{1}", 'A', maxValidLetter);
+                Console.WriteLine("Wrong Input. Enter Column Between {0}-{1}", 'A', maxValidLetter - 1);
                 isValidLetterColumn = false;
             }
 
