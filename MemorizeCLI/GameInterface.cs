@@ -30,16 +30,36 @@ namespace MemorizeCLI
             //}
             runMenu();
             RunGame();
-            finishGame();
         }
 
-        private void finishGame()
+        public void RestartGame()
         {
-
+            int newNumOfRows = 4;
+            int newNumOfColumns = 4;
+            m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
+            r_GameMenu.GetAndValidateMatrixDimenssions(out newNumOfRows, out newNumOfColumns);
+            m_GameLogicManager.ResetGameLogic(newNumOfRows,newNumOfColumns);
+            RunGame();
+        }
+        private bool RestartGameIfNeeded()
+        {
+            bool isRestartNeeded = false;
                 //DisplayGameInterface();
-                printWinnner();
-                Console.WriteLine("BYE\n");
-                exitGame();
+                //printWinnner();
+                Console.WriteLine("\nPress R if you want to play another game, else press any other key\n");
+                string restartOrQuit = Console.ReadLine();
+                if(restartOrQuit == "R")
+                {
+                    ClearScreen();
+                    isRestartNeeded = true;
+                }
+                else
+                {
+                    Console.WriteLine("BYE\n");
+                    exitGame();
+                }
+
+                return isRestartNeeded;
                 //Console.WriteLine(m_GameLogicManager.GetGameOverStatus());
 
                 //bool restartNeeded = CheckRestart();
@@ -59,14 +79,14 @@ namespace MemorizeCLI
         {
             if(m_GameLogicManager.firstPlayerScore == m_GameLogicManager.secondPlayerScore)
             {
-                Console.WriteLine("It's A Tie !!!\n");
+                Console.WriteLine("\nIt's A Tie !!!\n");
             }
             else
             {
                 string name = m_GameLogicManager.firstPlayerScore > m_GameLogicManager.secondPlayerScore
                                   ? m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName
                                   : m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName;
-                Console.WriteLine($"{name} Is The Winner !!!\n");
+                Console.WriteLine($"\n{name} Is The Winner !!!\n");
             }
         }
 
@@ -78,6 +98,12 @@ namespace MemorizeCLI
                 string playerInput = getPlayerNextMove();
                 updateTurnAndView(playerInput);
             }
+            printWinnner();
+            if (RestartGameIfNeeded()) 
+            {
+                RestartGame();
+            }
+
         }
 
         private void updateTurnAndView(string i_PlayerInput)
@@ -112,9 +138,9 @@ namespace MemorizeCLI
         {
             string firstPlayerName, secondPlayerName;
             int columns, rows;
-            eComputerLevel computerLevel;
+
             eGameType gameType =
-                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns, out computerLevel);
+                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns );
             Player firstPlayer = new Player(firstPlayerName, ePlayerType.Human);
             Player? secondPlayer;
             if (gameType == eGameType.HumanVHuman)
@@ -165,11 +191,33 @@ namespace MemorizeCLI
             }
             else
             {
-                playerNextMove = m_GameLogicManager.CalculateComputerInput();
-                displayComputerProccess();
+                //comuter input here will be ai move
+                playerNextMove = m_GameLogicManager.GetAiNextMove();
+                displayComputerMessage();
             }
 
             return playerNextMove;
+        }
+
+        private void displayComputerMessage()
+        {
+            string computerMessage = "Computer has got something in memory!";
+
+            if (!m_GameLogicManager.ComputerHasMatch)
+            {
+                computerMessage = "Computer is thinking.";
+                Console.Write(computerMessage);
+                System.Threading.Thread.Sleep(1000);
+                Console.Write('.');
+                System.Threading.Thread.Sleep(1000);
+                Console.Write('.');
+                System.Threading.Thread.Sleep(1000);
+            }
+            else
+            {
+                Console.Write(computerMessage);
+                System.Threading.Thread.Sleep(2000);
+            }
         }
 
         private string GetInputFromHumanPlayer()
@@ -269,28 +317,6 @@ namespace MemorizeCLI
             }
 
             return isValidLetterColumn;
-        }
-
-        private void displayComputerProccess()
-        {
-            string computerMessage = "Computer Recalls A Match.";
-
-            if (!m_GameLogicManager.ComputerHasAMatch)
-            {
-                computerMessage = "Proceccing.";
-                Console.Write(computerMessage);
-                System.Threading.Thread.Sleep(1000);
-                Console.Write('.');
-                System.Threading.Thread.Sleep(1000);
-                Console.Write('.');
-                System.Threading.Thread.Sleep(1000);
-            }
-
-            else
-            {
-                Console.Write(computerMessage);
-                System.Threading.Thread.Sleep(2000);
-            }
         }
 
         public void ClearScreen()

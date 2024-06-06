@@ -9,9 +9,14 @@ namespace MemorizeCLI
 {
     internal class GameBoard
     {
-        private int m_NumOfColumns;
-        private int m_NumOfRows; 
-        private BoardTile[,] m_Board;
+        readonly int m_NumOfColumns;
+        readonly int m_NumOfRows; 
+        readonly BoardTile[,] m_Board;
+
+        public BoardTile GetBoardTile(int row, int column)
+        {
+            return m_Board[row, column];
+        }
 
         public GameBoard(int i_NumOfRows, int i_NumOfColumns)
         {
@@ -20,8 +25,6 @@ namespace MemorizeCLI
             InitializeBoard(m_NumOfRows,m_NumOfColumns ,ref m_Board);
         }
         
-
-
         private (int, int) getValidBoardSize()
         {
             int numberOfLinesInBoard, numberOfRowsInBoard;
@@ -58,17 +61,17 @@ namespace MemorizeCLI
             Array.Copy(letters, 0, shuffeledBoard, 0, letters.Length);
             Array.Copy(letters, 0, shuffeledBoard, letters.Length, letters.Length);
 
-            //// Shuffle the board
-            //Random rand = new Random();
-            //for (int i = shuffeledBoard.Length - 1; i > 0; i--)
-            //{
-            //    int j = rand.Next(i + 1);
-            //    char temp = shuffeledBoard[i];
-            //    shuffeledBoard[i] = shuffeledBoard[j];
-            //    shuffeledBoard[j] = temp;
-            //}
+            // Shuffle the board
+            Random rand = new Random();
+            for (int i = shuffeledBoard.Length - 1; i > 0; i--)
+            {
+                int j = rand.Next(i + 1);
+                char temp = shuffeledBoard[i];
+                shuffeledBoard[i] = shuffeledBoard[j];
+                shuffeledBoard[j] = temp;
+            }
 
-            for(int i = 0; i < i_NumOfRows; ++i)
+            for (int i = 0; i < i_NumOfRows; ++i)
             {
                 for(int j = 0; j < i_NumOfColumns; ++j)
                 {
@@ -120,14 +123,6 @@ namespace MemorizeCLI
             return isSuccededToReveal;
         }
 
-        public BoardTile[,] BoardTile
-        {
-            get
-            {
-                return m_Board;
-            }
-        }
-
         public void HideTile(int i_Column, int i_Row)
         {
             if (i_Row >= 0 && i_Row < m_NumOfColumns && i_Column >= 0 && i_Column < m_NumOfRows)
@@ -144,6 +139,12 @@ namespace MemorizeCLI
             return m_Board[row, column];
         }
 
+        public string ConvertToStringCell(int i_Row, int i_Column)
+        {
+            char columnLetter = (char)('A' + i_Column);
+            int rowNumber = i_Row + 1;
+            return columnLetter.ToString() + rowNumber.ToString();
+        }
 
         //public bool AllTilesRevealed()
         //{

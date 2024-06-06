@@ -14,8 +14,6 @@ namespace MemorizeCLI
         {
             GameInterface g1 = new GameInterface();
             g1.StartGame();
-        
-
         }
 
     }
