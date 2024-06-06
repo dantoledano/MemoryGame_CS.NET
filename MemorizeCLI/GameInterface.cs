@@ -51,7 +51,6 @@ namespace MemorizeCLI
             }
             else
             {
-                Console.WriteLine("Have A Great Day. Bye !\n");
                 exitGame();
             }
 
@@ -94,12 +93,8 @@ namespace MemorizeCLI
 
         private void updateTurnAndView(string i_PlayerInput)
         {
-            if (i_PlayerInput == k_QuitGame)
+            if (i_PlayerInput != k_QuitGame)
             {
-                m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.Over;
-                exitGame();
-            }
-
             BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
             m_GameLogicManager.UpdateTurn(ref selectedTile);
             displayGameInterface();
@@ -112,6 +107,12 @@ namespace MemorizeCLI
                 m_GameLogicManager.TogglePlayer();
             }
             m_GameLogicManager.AreMatchingTiles = false;
+            }
+            else
+            {
+                m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.Over;
+                exitGame();
+            }
         }
 
         /* ----------------------------------------------- */
@@ -139,25 +140,65 @@ namespace MemorizeCLI
 
         /* ----------------------------------------------- */
 
+        //        private void displayGameInterface()
+        //        {
+        //            Ex02.ConsoleUtils.Screen.Clear();
+        //            string scoreBoard = string.Format(@"
+        //            SCORE BOARD
+        //  ||============================||
+        //  ||  {0,-8} | {1,-5}          ||
+        //  ||----------------------------||
+        //  ||  {2,-7} | {3,-5}          ||
+        //  ||============================||
+        //",
+        //                m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName,
+        //                m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints,
+        //                m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName,
+        //                m_GameLogicManager.GameDataManager.SecondPlayer.PlayerPoints);
+        //            Console.WriteLine(scoreBoard);
+        //            Console.WriteLine("\n{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
+        //            m_GameLogicManager.GameDataManager.GameBoard.DisplayBoard();
+        //        }
+
         private void displayGameInterface()
         {
             Ex02.ConsoleUtils.Screen.Clear();
+
+            string firstPlayerName = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName;
+            string firstPlayerPoints = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints.ToString();
+            string secondPlayerName = m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName;
+            string secondPlayerPoints = m_GameLogicManager.GameDataManager.SecondPlayer.PlayerPoints.ToString();
+
+            int nameColumnWidth = Math.Max(firstPlayerName.Length, secondPlayerName.Length) + 2;
+            int pointsColumnWidth = Math.Max(firstPlayerPoints.Length, secondPlayerPoints.Length) + 2;
+            int totalWidth = nameColumnWidth + pointsColumnWidth + 7;
+
+            string borderLine = new string('=', totalWidth);
+            string separatorLine = new string('-', totalWidth);
+
             string scoreBoard = string.Format(@"
-            SCORE BOARD
-  ||============================||
-  ||  {0,-8} | {1,-5}          ||
-  ||----------------------------||
-  ||  {2,-7} | {3,-5}          ||
-  ||============================||
+   SCORE BOARD:
+  ||{0}||
+  ||  {1} | {2}  ||
+  ||{3}||
+  ||  {4} | {5}  ||
+  ||{6}||
 ",
-                m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName,
-                m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints,
-                m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName,
-                m_GameLogicManager.GameDataManager.SecondPlayer.PlayerPoints);
+                borderLine,
+                firstPlayerName.PadRight(nameColumnWidth),
+                firstPlayerPoints.PadRight(pointsColumnWidth),
+                separatorLine,
+                secondPlayerName.PadRight(nameColumnWidth),
+                secondPlayerPoints.PadRight(pointsColumnWidth),
+                borderLine
+            );
+
             Console.WriteLine(scoreBoard);
             Console.WriteLine("\n{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
             m_GameLogicManager.GameDataManager.GameBoard.DisplayBoard();
         }
+
+
         /* ----------------------------------------------- */
 
         private string getPlayerNextMove()
