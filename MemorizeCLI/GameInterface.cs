@@ -39,25 +39,6 @@ namespace MemorizeCLI
         }
         /* ----------------------------------------------- */
 
-        private bool restartGameIfNeeded()
-        {
-            bool restartRequested = false;
-            Console.WriteLine("\n \n");
-            string userInputForRestartRequest = Console.ReadLine();
-            if (userInputForRestartRequest == k_RestartGame)
-            {
-                ClearScreen();
-                restartRequested = true;
-            }
-            else
-            {
-                exitGame();
-            }
-
-            return restartRequested;
-        }
-        /* ----------------------------------------------- */
-
         private void displayWinnerMessage()
         {
             if (m_GameLogicManager.FirstPlayerScore == m_GameLogicManager.SecondPlayerScore)
@@ -76,17 +57,31 @@ namespace MemorizeCLI
 
         private void runGame()
         {
+            string playerInput = "";
             while (m_GameLogicManager.GameDataManager.GameStatus == eGameStatus.CurrentlyRunning)
             {
                 displayGameInterface();
-                string playerInput = getPlayerNextMove();
+                playerInput = getPlayerNextMove();
                 updateTurnAndView(playerInput.ToUpper());
             }
             displayWinnerMessage();
-            if (restartGameIfNeeded())
+            if (playerInput == k_QuitGame)
             {
-                RestartGame();
+              exitGame();
             }
+            else //Game finished without an early exit.
+            {
+                Console.WriteLine("Do you Want To Play Again? Press R.");
+                if (Console.ReadLine().ToUpper() == "R")
+                {
+                    RestartGame();
+                }
+                else
+                {
+                    exitGame();
+                }
+            }
+
 
         }
         /* ----------------------------------------------- */
@@ -140,29 +135,11 @@ namespace MemorizeCLI
 
         /* ----------------------------------------------- */
 
-        //        private void displayGameInterface()
-        //        {
-        //            Ex02.ConsoleUtils.Screen.Clear();
-        //            string scoreBoard = string.Format(@"
-        //            SCORE BOARD
-        //  ||============================||
-        //  ||  {0,-8} | {1,-5}          ||
-        //  ||----------------------------||
-        //  ||  {2,-7} | {3,-5}          ||
-        //  ||============================||
-        //",
-        //                m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName,
-        //                m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints,
-        //                m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName,
-        //                m_GameLogicManager.GameDataManager.SecondPlayer.PlayerPoints);
-        //            Console.WriteLine(scoreBoard);
-        //            Console.WriteLine("\n{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
-        //            m_GameLogicManager.GameDataManager.GameBoard.DisplayBoard();
-        //        }
+ 
 
         private void displayGameInterface()
         {
-            Ex02.ConsoleUtils.Screen.Clear();
+            ClearScreen();
 
             string firstPlayerName = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName;
             string firstPlayerPoints = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints.ToString();
