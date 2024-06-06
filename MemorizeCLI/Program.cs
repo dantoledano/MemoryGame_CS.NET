@@ -9,7 +9,6 @@ namespace MemorizeCLI
 {
     internal class Program
     {
-
         public static void Main(string[] i_Args)
         {
             GameInterface g1 = new GameInterface();
@@ -18,13 +17,3 @@ namespace MemorizeCLI
 
     }
 }
-
-
-/*TODO
- * Change game mode to running after menu - suppose to be at the constructor of the GameLogicManager
- * drawData() = displayGameInterface()
- * take player input - function
- * validate human input
- *
- *
- */

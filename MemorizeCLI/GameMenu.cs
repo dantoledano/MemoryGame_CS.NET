@@ -8,18 +8,17 @@ namespace MemorizeCLI
 {
     internal class GameMenu
     {
-
-        public eGameType RunMenuScreen(out string o_FirstPlayerName, out string o_secondPlayerName,out int o_numOfRows, out int o_numOfColumns)
+        public eGameType RunMenuScreen(out string o_FirstPlayerName, out string o_SecondPlayerName,out int o_NumOfRows, out int o_NumOfColumns)
         {
-            o_numOfColumns = 4;
-            o_numOfRows = 4;
+            o_NumOfColumns = 4;
+            o_NumOfRows = 4;
             Console.WriteLine("Welcome To The Memory Game!");
             Console.WriteLine("Please Enter First Player Name: ");
             o_FirstPlayerName = Console.ReadLine();
             Console.WriteLine($"Hello {o_FirstPlayerName}");
-            Console.WriteLine("Choose Your Prefered Game Type:");
-            eGameType gameType = GetAndValidateGameType(out o_secondPlayerName);
-            GetAndValidateMatrixDimenssions(out o_numOfRows, out o_numOfColumns);
+            Console.WriteLine("Choose Your Preferred Game Type:");
+            eGameType gameType = GetAndValidateGameType(out o_SecondPlayerName);
+            GetAndValidateMatrixDimensions(out o_NumOfRows, out o_NumOfColumns);
             Ex02.ConsoleUtils.Screen.Clear();
             return gameType;
         }
@@ -52,53 +51,49 @@ namespace MemorizeCLI
             }
 
             return userSizeChoice;
-
         }
 
-        public bool GetAndValidateMatrixDimenssions(out int o_numOfRows, out int o_numOfColumns )
+        public bool GetAndValidateMatrixDimensions(out int o_NumOfRows, out int o_NumOfColumns)
         {
-            bool isValidMatrixDimenssions = false;
-            o_numOfColumns = 4;
-            o_numOfRows = 4;
+            bool isValidMatrixDimensions = false;
+            o_NumOfColumns = 4;
+            o_NumOfRows = 4;
 
-            while (!isValidMatrixDimenssions)
+            while (!isValidMatrixDimensions)
             {
                 Console.WriteLine("Please Enter Number Of Rows:");
-                o_numOfRows = GetSizeWithinRange(GameLogicManager.MinMatrixRows, GameLogicManager.MaxMatrixRows);
+                o_NumOfRows = GetSizeWithinRange(GameLogicManager.MinMatrixRows, GameLogicManager.MaxMatrixRows);
                 Console.WriteLine("Please Enter Number Of Columns:");
-                o_numOfColumns =
-                    GetSizeWithinRange(GameLogicManager.MinMatrixColumns, GameLogicManager.MaxMatrixColumns);
+                o_NumOfColumns = GetSizeWithinRange(GameLogicManager.MinMatrixColumns, GameLogicManager.MaxMatrixColumns);
 
-
-                if ((o_numOfColumns * o_numOfRows) % 2 == 0)
+                if ((o_NumOfColumns * o_NumOfRows) % 2 == 0)
                 {
-                    isValidMatrixDimenssions = true;
+                    isValidMatrixDimensions = true;
                 }
                 else
                 {
                     Console.WriteLine("Invalid input, enter even sized matrix.\n");
                 }
-
             }
-            return isValidMatrixDimenssions;
+
+            return isValidMatrixDimensions;
         }
 
-        private eGameType GetAndValidateGameType(out string o_secondPlayerName)
+        private eGameType GetAndValidateGameType(out string o_SecondPlayerName)
         {
             eGameType gameType = eGameType.HumanVComputer;
-            o_secondPlayerName = "0";
             Console.WriteLine("1) Human Vs Human");
             Console.WriteLine("2) Human Vs Computer");
-            string userChoiceForGameType = ValidateGameType();
+            string userChoiceForGameType = validateGameType();
             if (userChoiceForGameType == "1")
             {
                 Console.WriteLine("Please Enter Second Player Name:");
-                o_secondPlayerName = Console.ReadLine();
+                o_SecondPlayerName = Console.ReadLine();
                 gameType = eGameType.HumanVHuman;
             }
             else
             {
-                o_secondPlayerName = "Computer";
+                o_SecondPlayerName = "Computer";
                 gameType = eGameType.HumanVComputer;
             }
 
@@ -107,7 +102,7 @@ namespace MemorizeCLI
 
 
 
-        private string ValidateGameType()
+        private string validateGameType()
         {
             string selectedGameType = Console.ReadLine();
 

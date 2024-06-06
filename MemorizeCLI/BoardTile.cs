@@ -14,26 +14,50 @@ namespace MemorizeCLI
         private int m_RowIndexInBoard;
         public char Value
         {
-            get { return m_Value; }
-            set{ m_Value = value; }
+            get
+            {
+                return m_Value;
+            }
+            set
+            {
+                m_Value = value;
+            }
         }
 
         public bool IsRevealed
         {
-            get{ return m_IsRevealed; }
-            set{ m_IsRevealed = value; }
+            get
+            {
+                return m_IsRevealed;
+            }
+            set
+            {
+                m_IsRevealed = value;
+            }
         }
 
-        public int  ColumnIndexInBoard
+        public int ColumnIndexInBoard
         {
-            get { return m_ColumnIndexInBoard; }
-            set { m_ColumnIndexInBoard = value; }
+            get
+            {
+                return m_ColumnIndexInBoard;
+            }
+            set
+            {
+                m_ColumnIndexInBoard = value;
+            }
         }
 
         public int RowIndexInBoard
         {
-            get { return m_RowIndexInBoard; }
-            set { m_RowIndexInBoard = value; }
+            get
+            {
+                return m_RowIndexInBoard;
+            }
+            set
+            {
+                m_RowIndexInBoard = value;
+            }
         }
 
 

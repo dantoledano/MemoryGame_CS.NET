@@ -8,113 +8,118 @@ namespace MemorizeCLI
 {
     internal class GameInterface
     {
-        //private int k_NumOfColumns;
-        //private int k_NumOfRows;
-        //private eGameType e_GameType;
-        //private GameDataManager m_GameDataManager;
-        private const string QuitGame = "Q";
+        private const string k_QuitGame = "Q";
+        private const string k_RestartGame = "R";
+        private const int k_DefaultNumOfRows = 4;
+        private const int k_DefaultNumOfColumns = 4;
         private readonly GameMenu r_GameMenu;
-        private  GameLogicManager m_GameLogicManager;
+        private GameLogicManager m_GameLogicManager;
 
 
         public GameInterface()
         {
             r_GameMenu = new GameMenu();
         }
+        /* ----------------------------------------------- */
 
         public void StartGame()
         {
             runMenu();
-            RunGame();
+            runGame();
         }
-
+        /* ----------------------------------------------- */
         public void RestartGame()
         {
-            int newNumOfRows = 4;
-            int newNumOfColumns = 4;
+            int newNumOfRows = k_DefaultNumOfRows;
+            int newNumOfColumns = k_DefaultNumOfColumns;
             m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
-            r_GameMenu.GetAndValidateMatrixDimenssions(out newNumOfRows, out newNumOfColumns);
-            m_GameLogicManager.ResetGameLogic(newNumOfRows,newNumOfColumns);
-            RunGame();
+            r_GameMenu.GetAndValidateMatrixDimensions(out newNumOfRows, out newNumOfColumns);
+            m_GameLogicManager.ResetGameLogic(newNumOfRows, newNumOfColumns);
+            runGame();
         }
-        private bool RestartGameIfNeeded()
-        {
-            bool isRestartNeeded = false;
-                //DisplayGameInterface();
-                //printWinnner();
-                Console.WriteLine("\nPress R if you want to play another game, else press any other key\n");
-                string restartOrQuit = Console.ReadLine();
-                if(restartOrQuit == "R")
-                {
-                    ClearScreen();
-                    isRestartNeeded = true;
-                }
-                else
-                {
-                    Console.WriteLine("BYE\n");
-                    exitGame();
-                }
+        /* ----------------------------------------------- */
 
-                return isRestartNeeded;
-        }
-
-        private void printWinnner()
+        private bool restartGameIfNeeded()
         {
-            if(m_GameLogicManager.firstPlayerScore == m_GameLogicManager.secondPlayerScore)
+            bool restartRequested = false;
+            Console.WriteLine("\n \n");
+            string userInputForRestartRequest = Console.ReadLine();
+            if (userInputForRestartRequest == k_RestartGame)
             {
-                Console.WriteLine("\nIt's A Tie !!!\n");
+                ClearScreen();
+                restartRequested = true;
             }
             else
             {
-                string name = m_GameLogicManager.firstPlayerScore > m_GameLogicManager.secondPlayerScore
+                Console.WriteLine("Have A Great Day. Bye !\n");
+                exitGame();
+            }
+
+            return restartRequested;
+        }
+        /* ----------------------------------------------- */
+
+        private void displayWinnerMessage()
+        {
+            if (m_GameLogicManager.FirstPlayerScore == m_GameLogicManager.SecondPlayerScore)
+            {
+                Console.WriteLine("\n No Win Today. It's A Tie...\n");
+            }
+            else
+            {
+                string name = m_GameLogicManager.FirstPlayerScore > m_GameLogicManager.SecondPlayerScore
                                   ? m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName
                                   : m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName;
-                Console.WriteLine($"\n{name} Is The Winner !!!\n");
+                Console.WriteLine($"\n Congratulations {name} You Are The Winner ! \n");
             }
         }
+        /* ----------------------------------------------- */
 
-        private void RunGame()
+        private void runGame()
         {
             while (m_GameLogicManager.GameDataManager.GameStatus == eGameStatus.CurrentlyRunning)
             {
-                DisplayGameInterface();
+                displayGameInterface();
                 string playerInput = getPlayerNextMove();
                 updateTurnAndView(playerInput.ToUpper());
             }
-            printWinnner();
-            if (RestartGameIfNeeded()) 
+            displayWinnerMessage();
+            if (restartGameIfNeeded())
             {
                 RestartGame();
             }
 
         }
+        /* ----------------------------------------------- */
 
         private void updateTurnAndView(string i_PlayerInput)
         {
-            if (i_PlayerInput == "Q")
+            if (i_PlayerInput == k_QuitGame)
             {
+                m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.Over;
                 exitGame();
             }
 
             BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
-            m_GameLogicManager.updateTurn(ref selectedTile);
-            DisplayGameInterface();
+            m_GameLogicManager.UpdateTurn(ref selectedTile);
+            displayGameInterface();
             if (m_GameLogicManager.IsFirstSelection && !m_GameLogicManager.AreMatchingTiles)
-            { 
-                Console.WriteLine("Not Matching! Try again next time.");
+            {
+                Console.ForegroundColor = ConsoleColor.Red; // Change text color to green
+                Console.WriteLine("No Match This Time. Don't give up !");
+                Console.ResetColor();
                 System.Threading.Thread.Sleep(2000);
                 m_GameLogicManager.TogglePlayer();
             }
             m_GameLogicManager.AreMatchingTiles = false;
         }
-        
 
+        /* ----------------------------------------------- */
         private void exitGame()
         {
             Console.WriteLine("Thanks For Playing. Have A Nice Day!");
-            Environment.Exit(0);
         }
-
+        /* ----------------------------------------------- */
 
         private void runMenu()
         {
@@ -122,46 +127,38 @@ namespace MemorizeCLI
             int columns, rows;
 
             eGameType gameType =
-                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns );
+                r_GameMenu.RunMenuScreen(out firstPlayerName, out secondPlayerName, out rows, out columns);
             Player firstPlayer = new Player(firstPlayerName, ePlayerType.Human);
-            Player? secondPlayer;
-            if (gameType == eGameType.HumanVHuman)
-            {
-                secondPlayer = new Player(secondPlayerName, ePlayerType.Human);
-            }
-            else
-            {
-                secondPlayer = new Player(secondPlayerName, ePlayerType.Computer);
-            }
 
-            m_GameLogicManager = new GameLogicManager(firstPlayer, secondPlayer, rows, columns,gameType);
+            ePlayerType secondPlayerType = gameType == eGameType.HumanVComputer ? ePlayerType.Computer :
+                 ePlayerType.Human;
+
+            Player secondPlayer = new Player(secondPlayerName, secondPlayerType);
+            m_GameLogicManager = new GameLogicManager(firstPlayer, secondPlayer, rows, columns, gameType);
         }
 
+        /* ----------------------------------------------- */
 
-        private void DisplayGameInterface()
+        private void displayGameInterface()
         {
             Ex02.ConsoleUtils.Screen.Clear();
-            Console.WriteLine("{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
-
-            string scoreBoard = string.Format("Score Board: {0}:{1} | {2}:{3}\n",
+            string scoreBoard = string.Format(@"
+            SCORE BOARD
+  ||============================||
+  ||  {0,-8} | {1,-5}          ||
+  ||----------------------------||
+  ||  {2,-7} | {3,-5}          ||
+  ||============================||
+",
                 m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName,
                 m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints,
                 m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName,
                 m_GameLogicManager.GameDataManager.SecondPlayer.PlayerPoints);
-
             Console.WriteLine(scoreBoard);
-            //m_GameDataManager.GameBoard.InitializeBoard();
-           m_GameLogicManager.GameDataManager.GameBoard.DisplayBoard();
+            Console.WriteLine("\n{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
+            m_GameLogicManager.GameDataManager.GameBoard.DisplayBoard();
         }
-
-        public void DisplayGameSettings()
-        {
-            Console.WriteLine($"Game Type: {m_GameLogicManager.GameDataManager.GameType}");
-            Console.WriteLine($"Number of Columns: {m_GameLogicManager.GameDataManager.NumOfColumns}");
-            Console.WriteLine($"Number of Rows: {m_GameLogicManager.GameDataManager.NumOfRows}");
-            Console.WriteLine($"First Player Type: {m_GameLogicManager.GameDataManager.FirstPlayer.PlayerType}");
-            Console.WriteLine($"Second Player Type: {m_GameLogicManager.GameDataManager.SecondPlayer.PlayerType}");
-        }
+        /* ----------------------------------------------- */
 
         private string getPlayerNextMove()
         {
@@ -169,40 +166,46 @@ namespace MemorizeCLI
 
             if (m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerType == ePlayerType.Human)
             {
-                playerNextMove = GetInputFromHumanPlayer();
+                playerNextMove = getInputFromHumanPlayer();
             }
             else
             {
-                //comuter input here will be ai move
                 playerNextMove = m_GameLogicManager.GetAiNextMove();
                 displayComputerMessage();
             }
 
             return playerNextMove;
         }
+        /* ----------------------------------------------- */
 
         private void displayComputerMessage()
         {
-            string computerMessage = "Computer has got something in memory!";
+            const string thinkingMessage = "The computer is deep in thought";
+            const string matchMessage = "Eureka! The computer has found a match!";
 
             if (!m_GameLogicManager.ComputerHasMatch)
             {
-                computerMessage = "Computer is thinking.";
-                Console.Write(computerMessage);
-                System.Threading.Thread.Sleep(1000);
-                Console.Write('.');
-                System.Threading.Thread.Sleep(1000);
-                Console.Write('.');
-                System.Threading.Thread.Sleep(1000);
+                Console.Write(thinkingMessage);
+                for (int i = 0; i < 3; i++)
+                {
+                    System.Threading.Thread.Sleep(1000);
+                    Console.Write('.');
+                }
+                Console.WriteLine(); // Move to the next line after dots
             }
             else
             {
-                Console.Write(computerMessage);
+                Console.ForegroundColor = ConsoleColor.Green; // Change text color to green
+                Console.Write(matchMessage);
                 System.Threading.Thread.Sleep(2000);
+                Console.ResetColor();
+                Console.WriteLine();
             }
         }
 
-        private string GetInputFromHumanPlayer()
+        /* ----------------------------------------------- */
+
+        private string getInputFromHumanPlayer()
         {
             string playerNextMove = "";
 
@@ -212,37 +215,39 @@ namespace MemorizeCLI
             {
                 Console.WriteLine("Now {0} has to choose next Move", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
                 playerNextMove = Console.ReadLine();
-                isNextMoveIsValid = ValidateHumanPlayerNextMove(playerNextMove);
+                isNextMoveIsValid = validateHumanPlayerNextMove(playerNextMove);
             }
 
             return playerNextMove;
         }
+        /* ----------------------------------------------- */
 
-        private bool ValidateHumanPlayerNextMove(string i_playerNextMove)
+        private bool validateHumanPlayerNextMove(string i_playerNextMove)
         {
             bool isNextMoveIsValid = true;
 
             if (i_playerNextMove != null)
             {
-               i_playerNextMove = i_playerNextMove.ToUpper();
+                i_playerNextMove = i_playerNextMove.ToUpper();
 
-               if (i_playerNextMove != QuitGame)
-               {
+                if (i_playerNextMove != k_QuitGame)
+                {
 
-                   isNextMoveIsValid = ValidateTileHumanPlayerPicked(i_playerNextMove);
+                    isNextMoveIsValid = validateTileHumanPlayerPicked(i_playerNextMove);
 
-                   if (isNextMoveIsValid)
-                   {
-                       isNextMoveIsValid = ValidateTileIsNotHidden(i_playerNextMove);
-                   }
-               }
+                    if (isNextMoveIsValid)
+                    {
+                        isNextMoveIsValid = validateTileIsNotHidden(i_playerNextMove);
+                    }
+                }
 
             }
 
             return isNextMoveIsValid;
         }
+        /* ----------------------------------------------- */
 
-        private bool ValidateTileIsNotHidden(string i_TileHumanPlayerPicked)
+        private bool validateTileIsNotHidden(string i_TileHumanPlayerPicked)
         {
             bool isHiddenTile = true;
 
@@ -253,8 +258,9 @@ namespace MemorizeCLI
             }
             return isHiddenTile;
         }
+        /* ----------------------------------------------- */
 
-        private bool ValidateTileHumanPlayerPicked(string i_TileHumanPlayerPicked)
+        private bool validateTileHumanPlayerPicked(string i_TileHumanPlayerPicked)
         {
             bool isValidTileChoice;
 
@@ -267,27 +273,29 @@ namespace MemorizeCLI
             {
                 char LetterColumns = i_TileHumanPlayerPicked[0];
                 char DigitRow = i_TileHumanPlayerPicked[1];
-                isValidTileChoice = ValidateColumnLetter(LetterColumns) && ValidateRowDigit(DigitRow);
+                isValidTileChoice = validateColumnLetter(LetterColumns) && validateRowDigit(DigitRow);
             }
 
             return isValidTileChoice;
         }
+        /* ----------------------------------------------- */
 
-        private bool ValidateRowDigit(char i_ChosenRow)
+        private bool validateRowDigit(char i_ChosenRow)
         {
             bool isValidRowDigit = true;
             char largerstValidDigit = (char)('0' + m_GameLogicManager.GameDataManager.NumOfRows);
 
             if (i_ChosenRow < '1' || i_ChosenRow > largerstValidDigit)
             {
-                Console.WriteLine("Wrong Input. Enter Row Between {0}-{1}",1,m_GameLogicManager.GameDataManager.NumOfRows);
+                Console.WriteLine("Wrong Input. Enter Row Between {0}-{1}", 1, m_GameLogicManager.GameDataManager.NumOfRows);
                 isValidRowDigit = false;
             }
 
             return isValidRowDigit;
         }
+        /* ----------------------------------------------- */
 
-        private bool ValidateColumnLetter(char i_ChosenColumn)
+        private bool validateColumnLetter(char i_ChosenColumn)
         {
             bool isValidLetterColumn = true;
             char maxValidLetter = (char)('A' + m_GameLogicManager.GameDataManager.NumOfColumns);
@@ -300,6 +308,7 @@ namespace MemorizeCLI
 
             return isValidLetterColumn;
         }
+        /* ----------------------------------------------- */
 
         public void ClearScreen()
         {
