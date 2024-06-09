@@ -33,6 +33,7 @@ namespace MemorizeCLI
             int newNumOfRows = k_DefaultNumOfRows;
             int newNumOfColumns = k_DefaultNumOfColumns;
             m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.CurrentlyRunning;
+            Ex02.ConsoleUtils.Screen.Clear();
             r_GameMenu.GetAndValidateMatrixDimensions(out newNumOfRows, out newNumOfColumns);
             m_GameLogicManager.ResetGameLogic(newNumOfRows, newNumOfColumns);
             runGame();
@@ -58,6 +59,7 @@ namespace MemorizeCLI
         private void runGame()
         {
             string playerInput = "";
+
             while (m_GameLogicManager.GameDataManager.GameStatus == eGameStatus.CurrentlyRunning)
             {
                 displayGameInterface();
@@ -65,14 +67,14 @@ namespace MemorizeCLI
                 updateTurnAndView(playerInput.ToUpper());
             }
             displayWinnerMessage();
-            if (playerInput == k_QuitGame)
+            if (playerInput.ToUpper() == k_QuitGame)
             {
               exitGame();
             }
             else //Game finished without an early exit.
             {
-                Console.WriteLine("Do you Want To Play Again? Press R.");
-                if (Console.ReadLine().ToUpper() == "R")
+                Console.WriteLine($"Do you Want To Play Again? Press {k_RestartGame}, Otherwise press any key.");
+                if (Console.ReadLine().ToUpper() == k_RestartGame)
                 {
                     RestartGame();
                 }
@@ -90,23 +92,23 @@ namespace MemorizeCLI
         {
             if (i_PlayerInput != k_QuitGame)
             {
-            BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
-            m_GameLogicManager.UpdateTurn(ref selectedTile);
-            displayGameInterface();
-            if (m_GameLogicManager.IsFirstSelection && !m_GameLogicManager.AreMatchingTiles)
-            {
-                Console.ForegroundColor = ConsoleColor.Red; // Change text color to green
-                Console.WriteLine("No Match This Time. Don't give up !");
-                Console.ResetColor();
-                System.Threading.Thread.Sleep(2000);
-                m_GameLogicManager.TogglePlayer();
-            }
-            m_GameLogicManager.AreMatchingTiles = false;
+                BoardTile selectedTile = m_GameLogicManager.GameDataManager.GameBoard.GetTile(i_PlayerInput);
+                m_GameLogicManager.UpdateTurn(ref selectedTile);
+                displayGameInterface();
+                if (m_GameLogicManager.IsFirstSelection && !m_GameLogicManager.AreMatchingTiles)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red; // Change text color to green
+                    Console.WriteLine("No Match This Time. Don't give up !");
+                    Console.ResetColor();
+                    System.Threading.Thread.Sleep(2000);
+                    m_GameLogicManager.TogglePlayer();
+                }
+                m_GameLogicManager.AreMatchingTiles = false;
             }
             else
             {
                 m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.Over;
-                exitGame();
+                //exitGame();
             }
         }
 
@@ -139,7 +141,7 @@ namespace MemorizeCLI
 
         private void displayGameInterface()
         {
-            ClearScreen();
+            Ex02.ConsoleUtils.Screen.Clear();
 
             string firstPlayerName = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName;
             string firstPlayerPoints = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints.ToString();
@@ -198,12 +200,12 @@ namespace MemorizeCLI
 
         private void displayComputerMessage()
         {
-            const string thinkingMessage = "The computer is deep in thought";
-            const string matchMessage = "Eureka! The computer has found a match!";
+            const string k_ThinkingMessage = "The computer is deep in thought";
+            const string k_MatchMessage = "Eureka! The computer has found a match!";
 
             if (!m_GameLogicManager.ComputerHasMatch)
             {
-                Console.Write(thinkingMessage);
+                Console.Write(k_ThinkingMessage);
                 for (int i = 0; i < 3; i++)
                 {
                     System.Threading.Thread.Sleep(1000);
@@ -214,7 +216,7 @@ namespace MemorizeCLI
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green; // Change text color to green
-                Console.Write(matchMessage);
+                Console.Write(k_MatchMessage);
                 System.Threading.Thread.Sleep(2000);
                 Console.ResetColor();
                 Console.WriteLine();
@@ -240,22 +242,22 @@ namespace MemorizeCLI
         }
         /* ----------------------------------------------- */
 
-        private bool validateHumanPlayerNextMove(string i_playerNextMove)
+        private bool validateHumanPlayerNextMove(string i_PlayerNextMove)
         {
             bool isNextMoveIsValid = true;
 
-            if (i_playerNextMove != null)
+            if (i_PlayerNextMove != null)
             {
-                i_playerNextMove = i_playerNextMove.ToUpper();
+                i_PlayerNextMove = i_PlayerNextMove.ToUpper();
 
-                if (i_playerNextMove != k_QuitGame)
+                if (i_PlayerNextMove != k_QuitGame)
                 {
 
-                    isNextMoveIsValid = validateTileHumanPlayerPicked(i_playerNextMove);
+                    isNextMoveIsValid = validateTileHumanPlayerPicked(i_PlayerNextMove);
 
                     if (isNextMoveIsValid)
                     {
-                        isNextMoveIsValid = validateTileIsNotHidden(i_playerNextMove);
+                        isNextMoveIsValid = validateTileIsNotHidden(i_PlayerNextMove);
                     }
                 }
 
@@ -289,9 +291,9 @@ namespace MemorizeCLI
             }
             else
             {
-                char LetterColumns = i_TileHumanPlayerPicked[0];
-                char DigitRow = i_TileHumanPlayerPicked[1];
-                isValidTileChoice = validateColumnLetter(LetterColumns) && validateRowDigit(DigitRow);
+                char letterColumns = i_TileHumanPlayerPicked[0];
+                char digitRow = i_TileHumanPlayerPicked[1];
+                isValidTileChoice = validateColumnLetter(letterColumns) && validateRowDigit(digitRow);
             }
 
             return isValidTileChoice;
@@ -327,10 +329,5 @@ namespace MemorizeCLI
             return isValidLetterColumn;
         }
         /* ----------------------------------------------- */
-
-        public void ClearScreen()
-        {
-            Ex02.ConsoleUtils.Screen.Clear();
-        }
     }
 }

@@ -17,7 +17,7 @@ namespace MemorizeCLI
             o_FirstPlayerName = Console.ReadLine();
             Console.WriteLine($"Hello {o_FirstPlayerName}");
             Console.WriteLine("Choose Your Preferred Game Type:");
-            eGameType gameType = GetAndValidateGameType(out o_SecondPlayerName);
+            eGameType gameType = getAndValidateGameType(out o_SecondPlayerName);
             GetAndValidateMatrixDimensions(out o_NumOfRows, out o_NumOfColumns);
             Ex02.ConsoleUtils.Screen.Clear();
             return gameType;
@@ -79,7 +79,7 @@ namespace MemorizeCLI
             return isValidMatrixDimensions;
         }
 
-        private eGameType GetAndValidateGameType(out string o_SecondPlayerName)
+        private eGameType getAndValidateGameType(out string o_SecondPlayerName)
         {
             eGameType gameType = eGameType.HumanVComputer;
             Console.WriteLine("1) Human Vs Human");
