@@ -10,12 +10,14 @@ namespace MemorizeCLI
     {
         public eGameType RunMenuScreen(out string o_FirstPlayerName, out string o_SecondPlayerName,out int o_NumOfRows, out int o_NumOfColumns)
         {
+            string firstPlayerGreetingMessage;
             o_NumOfColumns = 4;
             o_NumOfRows = 4;
             Console.WriteLine("Welcome To The Memory Game!");
             Console.WriteLine("Please Enter First Player Name: ");
             o_FirstPlayerName = Console.ReadLine();
-            Console.WriteLine($"Hello {o_FirstPlayerName}");
+            firstPlayerGreetingMessage = string.Format("Hello {0}", o_FirstPlayerName);
+            Console.WriteLine(firstPlayerGreetingMessage);
             Console.WriteLine("Choose Your Preferred Game Type:");
             eGameType gameType = getAndValidateGameType(out o_SecondPlayerName);
             GetAndValidateMatrixDimensions(out o_NumOfRows, out o_NumOfColumns);
@@ -26,13 +28,15 @@ namespace MemorizeCLI
 
         public int GetSizeWithinRange(int i_MinSize, int i_MaxSize)
         {
+            string validRangeMessage;
             int userSizeChoice = i_MinSize;
             bool isInputANumber = false;
             bool isInputWithinRange = false;
 
             while (!isInputWithinRange || !isInputANumber)
             {
-                Console.WriteLine($"Enter A Value Between {i_MinSize} - {i_MaxSize}: ");
+                validRangeMessage = string.Format("Enter A Value Between {0} - {1}", i_MinSize, i_MaxSize);
+                Console.WriteLine(validRangeMessage);
                 isInputANumber = int.TryParse(Console.ReadLine(), out userSizeChoice);
 
                 if (isInputANumber)
@@ -62,9 +66,9 @@ namespace MemorizeCLI
             while (!isValidMatrixDimensions)
             {
                 Console.WriteLine("Please Enter Number Of Rows:");
-                o_NumOfRows = GetSizeWithinRange(GameLogicManager.MinMatrixRows, GameLogicManager.MaxMatrixRows);
+                o_NumOfRows = GetSizeWithinRange(GameInterface.MinMatrixRows, GameInterface.MaxMatrixRows);
                 Console.WriteLine("Please Enter Number Of Columns:");
-                o_NumOfColumns = GetSizeWithinRange(GameLogicManager.MinMatrixColumns, GameLogicManager.MaxMatrixColumns);
+                o_NumOfColumns = GetSizeWithinRange(GameInterface.MinMatrixColumns, GameInterface.MaxMatrixColumns);
 
                 if ((o_NumOfColumns * o_NumOfRows) % 2 == 0)
                 {

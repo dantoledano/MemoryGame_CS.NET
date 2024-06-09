@@ -8,10 +8,10 @@ namespace MemorizeCLI
 {
     internal class GameLogicManager
     {
-        private const int k_MaxMatrixRows = 6;
-        private const int k_MaxMatrixColumns = 6;
-        private const int k_MinMatrixRows = 4;
-        private const int k_MinMatrixColumns = 4;
+        //private const int k_MaxMatrixRows = 6;
+        //private const int k_MaxMatrixColumns = 6;
+        //private const int k_MinMatrixRows = 4;
+        //private const int k_MinMatrixColumns = 4;
         private readonly GameDataManager r_GameDataManager;
         private readonly eGameType r_GameType;
         private readonly Dictionary<BoardTile, char> r_ComputerMemory;
@@ -44,6 +44,8 @@ namespace MemorizeCLI
                 return m_ComputerHasMatch;
             }
         }
+        
+        /*
         public static int MaxMatrixRows
         {
             get
@@ -75,6 +77,8 @@ namespace MemorizeCLI
                 return k_MinMatrixColumns;
             }
         }
+        */
+        
 
         public int BoardHeight
         {
@@ -215,20 +219,20 @@ namespace MemorizeCLI
 
             return aiComputerSelection;
         }
-        private bool findBoardTileMatch(ref string i_MemorizedMatchingLetter)
+        private bool findBoardTileMatch(ref string i_MemorizedMatchingTile)
         {
             bool foundMatch = false;
 
-            foreach (var firstMemorizedLetter in r_ComputerMemory)
+            foreach (KeyValuePair<BoardTile, char> firstMemorizedTile in r_ComputerMemory)
             {
-                foreach (var secondMemorizedLetter in r_ComputerMemory)
+                foreach (KeyValuePair<BoardTile, char> secondMemorizedTile in r_ComputerMemory)
                 {
-                    if (!firstMemorizedLetter.Key.Equals(secondMemorizedLetter.Key))
+                    if (!firstMemorizedTile.Key.Equals(secondMemorizedTile.Key))
                     {
-                        if (firstMemorizedLetter.Value == secondMemorizedLetter.Value)
+                        if (firstMemorizedTile.Value == secondMemorizedTile.Value)
                         {
-                            i_MemorizedMatchingLetter = GameDataManager.GameBoard.ConvertTileToString(firstMemorizedLetter.Key.RowIndexInBoard, firstMemorizedLetter.Key.ColumnIndexInBoard);
-                            m_AiComputerSelection = secondMemorizedLetter.Key;
+                            i_MemorizedMatchingTile = GameDataManager.GameBoard.ConvertTileToString(firstMemorizedTile.Key.RowIndexInBoard, firstMemorizedTile.Key.ColumnIndexInBoard);
+                            m_AiComputerSelection = secondMemorizedTile.Key;
                             foundMatch = true;
                             break;
                         }

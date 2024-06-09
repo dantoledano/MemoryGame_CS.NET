@@ -12,8 +12,46 @@ namespace MemorizeCLI
         private const string k_RestartGame = "R";
         private const int k_DefaultNumOfRows = 4;
         private const int k_DefaultNumOfColumns = 4;
+        private const int k_MaxMatrixRows = 6;
+        private const int k_MaxMatrixColumns = 6;
+        private const int k_MinMatrixRows = 4;
+        private const int k_MinMatrixColumns = 4;
         private readonly GameMenu r_GameMenu;
         private GameLogicManager m_GameLogicManager;
+
+        public static int MaxMatrixRows
+        {
+            get
+            {
+                return k_MaxMatrixRows;
+            }
+        }
+
+        public static int MaxMatrixColumns
+        {
+            get
+            {
+                return k_MaxMatrixColumns;
+            }
+        }
+
+        public static int MinMatrixRows
+        {
+            get
+            {
+                return k_MinMatrixRows;
+            }
+        }
+
+        public static int MinMatrixColumns
+        {
+            get
+            {
+                return k_MinMatrixColumns;
+            }
+        }
+
+
 
 
         public GameInterface()
@@ -42,16 +80,18 @@ namespace MemorizeCLI
 
         private void displayWinnerMessage()
         {
+            string winnerMessage;
             if (m_GameLogicManager.FirstPlayerScore == m_GameLogicManager.SecondPlayerScore)
             {
                 Console.WriteLine("\n No Win Today. It's A Tie...\n");
             }
             else
             {
-                string name = m_GameLogicManager.FirstPlayerScore > m_GameLogicManager.SecondPlayerScore
+                string winnerName = m_GameLogicManager.FirstPlayerScore > m_GameLogicManager.SecondPlayerScore
                                   ? m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName
                                   : m_GameLogicManager.GameDataManager.SecondPlayer.PlayerName;
-                Console.WriteLine($"\n Congratulations {name} You Are The Winner ! \n");
+                winnerMessage = string.Format("\n Congratulations {0} You Are The Winner ! \n", winnerName);
+                Console.WriteLine(winnerMessage);
             }
         }
         /* ----------------------------------------------- */
@@ -59,6 +99,7 @@ namespace MemorizeCLI
         private void runGame()
         {
             string playerInput = "";
+            string restartMessage;
 
             while (m_GameLogicManager.GameDataManager.GameStatus == eGameStatus.CurrentlyRunning)
             {
@@ -73,8 +114,12 @@ namespace MemorizeCLI
             }
             else //Game finished without an early exit.
             {
-                Console.WriteLine($"Do you Want To Play Again? Press {k_RestartGame}, Otherwise press any key.");
-                if (Console.ReadLine().ToUpper() == k_RestartGame)
+                restartMessage = string.Format("Do you Want To Play Again? Press {0}, Otherwise press any key.",
+                    k_RestartGame);
+                Console.WriteLine(restartMessage);
+
+                playerInput = Console.ReadLine();
+                if (playerInput.ToUpper() == k_RestartGame)
                 {
                     RestartGame();
                 }
@@ -83,7 +128,6 @@ namespace MemorizeCLI
                     exitGame();
                 }
             }
-
 
         }
         /* ----------------------------------------------- */
@@ -108,7 +152,6 @@ namespace MemorizeCLI
             else
             {
                 m_GameLogicManager.GameDataManager.GameStatus = eGameStatus.Over;
-                //exitGame();
             }
         }
 
@@ -137,11 +180,10 @@ namespace MemorizeCLI
 
         /* ----------------------------------------------- */
 
- 
-
         private void displayGameInterface()
         {
             Ex02.ConsoleUtils.Screen.Clear();
+            string currentPlayerToPlayMessage;
 
             string firstPlayerName = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerName;
             string firstPlayerPoints = m_GameLogicManager.GameDataManager.FirstPlayer.PlayerPoints.ToString();
@@ -173,7 +215,8 @@ namespace MemorizeCLI
             );
 
             Console.WriteLine(scoreBoard);
-            Console.WriteLine("\n{0}'s Turn\n", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
+            currentPlayerToPlayMessage = string.Format("\n {0}'s Turn", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
+            Console.WriteLine(currentPlayerToPlayMessage);
             m_GameLogicManager.GameDataManager.GameBoard.DisplayBoard();
         }
 
@@ -200,23 +243,21 @@ namespace MemorizeCLI
 
         private void displayComputerMessage()
         {
-            const string k_ThinkingMessage = "The computer is deep in thought";
-            const string k_MatchMessage = "Eureka! The computer has found a match!";
 
             if (!m_GameLogicManager.ComputerHasMatch)
             {
-                Console.Write(k_ThinkingMessage);
+                Console.Write("The computer is deep in thought");
                 for (int i = 0; i < 3; i++)
                 {
                     System.Threading.Thread.Sleep(1000);
                     Console.Write('.');
                 }
-                Console.WriteLine(); // Move to the next line after dots
+                Console.WriteLine(); 
             }
             else
             {
-                Console.ForegroundColor = ConsoleColor.Green; // Change text color to green
-                Console.Write(k_MatchMessage);
+                Console.ForegroundColor = ConsoleColor.Green; 
+                Console.Write("Eureka! The computer has found a match!");
                 System.Threading.Thread.Sleep(2000);
                 Console.ResetColor();
                 Console.WriteLine();
@@ -228,12 +269,14 @@ namespace MemorizeCLI
         private string getInputFromHumanPlayer()
         {
             string playerNextMove = "";
+            string currrentPlayerToPlayMessage;
 
             bool isNextMoveIsValid = false;
 
             while (!isNextMoveIsValid)
             {
-                Console.WriteLine("Now {0} has to choose next Move", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
+                currrentPlayerToPlayMessage = string.Format("Now {0} has to choose next Move", m_GameLogicManager.GameDataManager.CurrentPlayer.PlayerName);
+                Console.WriteLine(currrentPlayerToPlayMessage);
                 playerNextMove = Console.ReadLine();
                 isNextMoveIsValid = validateHumanPlayerNextMove(playerNextMove);
             }
@@ -276,6 +319,7 @@ namespace MemorizeCLI
                 Console.WriteLine("Wrong Input. You Picked A Tile That Is Already Revealed!\n");
                 isHiddenTile = false;
             }
+
             return isHiddenTile;
         }
         /* ----------------------------------------------- */
@@ -302,12 +346,15 @@ namespace MemorizeCLI
 
         private bool validateRowDigit(char i_ChosenRow)
         {
+            string wrongRowInputMessage;
             bool isValidRowDigit = true;
             char largerstValidDigit = (char)('0' + m_GameLogicManager.GameDataManager.NumOfRows);
 
             if (i_ChosenRow < '1' || i_ChosenRow > largerstValidDigit)
             {
-                Console.WriteLine("Wrong Input. Enter Row Between {0}-{1}", 1, m_GameLogicManager.GameDataManager.NumOfRows);
+                wrongRowInputMessage = string.Format("Wrong Input. Enter Row Between {0}-{1}", 1,
+                    m_GameLogicManager.GameDataManager.NumOfRows);
+                Console.WriteLine(wrongRowInputMessage);
                 isValidRowDigit = false;
             }
 
@@ -317,12 +364,15 @@ namespace MemorizeCLI
 
         private bool validateColumnLetter(char i_ChosenColumn)
         {
+            string wrongColumnInputMessage;
             bool isValidLetterColumn = true;
             char maxValidLetter = (char)('A' + m_GameLogicManager.GameDataManager.NumOfColumns - 1);
 
             if (i_ChosenColumn < 'A' || i_ChosenColumn > maxValidLetter)
             {
-                Console.WriteLine("Wrong Input. Enter Column Between {0}-{1}", 'A', maxValidLetter);
+                wrongColumnInputMessage = string.Format("Wrong Input. Enter Column Between {0}-{1}", 'A',
+                    maxValidLetter);
+                Console.WriteLine(wrongColumnInputMessage);
                 isValidLetterColumn = false;
             }
 
@@ -330,4 +380,5 @@ namespace MemorizeCLI
         }
         /* ----------------------------------------------- */
     }
+
 }
