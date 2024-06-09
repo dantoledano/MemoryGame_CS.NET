@@ -13,9 +13,9 @@ namespace MemorizeCLI
         private readonly int r_NumOfRows;
         private readonly BoardTile[,] r_Board;
 
-        public BoardTile GetBoardTile(int row, int column)
+        public BoardTile GetBoardTile(int i_Row, int i_Column)
         {
-            return r_Board[row, column];
+            return r_Board[i_Row, i_Column];
         }
         /* ----------------------------------------------- */
 
@@ -27,9 +27,9 @@ namespace MemorizeCLI
         }
         /* ----------------------------------------------- */
 
-        public void InitializeBoard(int i_NumOfRows, int i_NumOfColumns, ref BoardTile[,] m_Board)
+        public void InitializeBoard(int i_NumOfRows, int i_NumOfColumns, ref BoardTile[,] o_Board)
         {
-            m_Board = new BoardTile[i_NumOfRows, i_NumOfColumns];
+            o_Board = new BoardTile[i_NumOfRows, i_NumOfColumns];
             int shuffledArrayIndexCounter = 0;
             char[] letters = new char[i_NumOfColumns * i_NumOfRows / 2];
             for (int i = 0; i < letters.Length; i++)
@@ -55,7 +55,7 @@ namespace MemorizeCLI
             {
                 for (int j = 0; j < i_NumOfColumns; ++j)
                 {
-                    m_Board[i, j] = new BoardTile(shuffledBoard[shuffledArrayIndexCounter], i, j);
+                    o_Board[i, j] = new BoardTile(shuffledBoard[shuffledArrayIndexCounter], i, j);
                     shuffledArrayIndexCounter++;
                 }
             }
