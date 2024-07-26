@@ -10,5 +10,6 @@ This is a Command-Line Interface (CLI) Memory Game where you can test your memor
 
 ## Demo
 
-![](screenshot.png)
+![](screenshot8.png)
+![](screenshot9.png)
 
