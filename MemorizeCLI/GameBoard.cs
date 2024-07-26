@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -59,6 +59,7 @@ namespace MemorizeCLI
                     shuffledArrayIndexCounter++;
                 }
             }
+
         }
 
         /* ----------------------------------------------- */
@@ -70,16 +71,30 @@ namespace MemorizeCLI
             {
                 Console.Write($"  {(char)('A' + j)} ");
             }
+
             Console.WriteLine();
             PrintSeparator(r_NumOfColumns);
-
             for (int i = 0; i < r_NumOfRows; i++)
             {
                 Console.Write($"{i + 1} |");
                 for (int j = 0; j < r_NumOfColumns; j++)
                 {
-                    Console.Write(r_Board[i, j].IsRevealed ? $" {r_Board[i, j].Value} |" : "   |");
+                    if(!r_Board[i, j].IsRevealed)
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.Write("   ");
+                    }
+                    else
+                    {
+                        Console.Write(" " + r_Board[i, j].Value); 
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.Write(" ");
+                    }
+
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    Console.Write("|");
                 }
+
                 Console.WriteLine();
                 PrintSeparator(r_NumOfColumns);
             }
